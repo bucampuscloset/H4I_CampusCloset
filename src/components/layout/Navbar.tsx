@@ -12,7 +12,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="sticky top-0 z-50 border-b-2 border-black bg-white" aria-label="Main navigation">
+    <nav className="sticky top-0 z-[1000] border-b-2 border-black bg-white" aria-label="Main navigation">
       <div className="mx-auto flex h-[83px] max-w-[1440px] items-center justify-between px-6 lg:px-[104px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">

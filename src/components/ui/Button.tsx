@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { cn } from '@/lib/cn'
 
 const variants = {
-  primary: 'bg-brand-dark-olive text-white hover:opacity-90 rounded-lg',
+  primary: 'bg-brand-dark-olive text-white hover:opacity-90 rounded-full',
   secondary: 'bg-white text-brand-text border-2 border-black hover:bg-gray-50 rounded-full',
-  dark: 'bg-brand-brown text-white hover:opacity-90 rounded-lg',
+  dark: 'bg-brand-brown text-white hover:opacity-90 rounded-full',
   olive: 'bg-brand-olive text-white hover:opacity-90 rounded-full',
 } as const
 
