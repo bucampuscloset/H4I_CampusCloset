@@ -90,7 +90,7 @@ export default async function DonatePage() {
   return (
     <>
       {/* ── Section 1: Hero ─────────────────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={cn(INNER, 'text-center')}>
           <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
             Donate Clothes
@@ -106,7 +106,7 @@ export default async function DonatePage() {
       <div className="h-9 w-full bg-brand-olive-light border-y-2 border-brand-brown" />
 
       {/* ── Section 2: How to Donate ────────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
           <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">How to Donate</h2>
           <p className="mt-3 font-body text-brand-text/70">
@@ -130,7 +130,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 3: What We Accept ───────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={INNER}>
           <div className="grid gap-6 md:grid-cols-2">
             {/* Accept */}
@@ -181,7 +181,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 4: Drop-Off Locations ───────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
           <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Drop-Off Locations</h2>
           <p className="mt-3 font-body text-brand-text/70">
@@ -204,7 +204,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 5: Schedule a Pickup ────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={INNER}>
           <div className="text-center">
             <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Schedule a Pickup</h2>
@@ -220,7 +220,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 6: Questions? ───────────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
           <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Questions?</h2>
           <p className="mt-3 font-body text-brand-text/70">
