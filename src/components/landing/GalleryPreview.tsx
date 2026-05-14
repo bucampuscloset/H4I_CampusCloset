@@ -4,8 +4,8 @@ import Button from '@/components/ui/Button'
 
 export default async function GalleryPreview() {
   const photos = await prisma.galleryPhoto.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 6,
+    orderBy: [{ displayOrder: 'asc' }, { createdAt: 'desc' }],
+    take: 4,
   })
 
   if (photos.length === 0) return null
@@ -17,22 +17,23 @@ export default async function GalleryPreview() {
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
             See Us in Action
           </h2>
-          <p className="font-body text-[15px] text-brand-text/70">
-            Snapshots from past swaps, drives, and community moments.
+          <p className="mx-auto max-w-2xl font-body text-[15px] text-brand-text/70">
+            Campus Closet is a sustainability initiative on campus, aiming to promote sustainable
+            fashion and circular consumption through free clothing swaps on campus.
           </p>
         </div>
 
-        <div className="mb-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+        <div className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-4">
           {photos.map((photo) => (
             <div
               key={photo.id}
-              className="relative aspect-square overflow-hidden rounded-md bg-gray-100"
+              className="relative aspect-[4/5] overflow-hidden rounded-[16px] bg-gray-100"
             >
               <Image
                 src={photo.url}
                 alt={photo.caption ?? 'Campus Closet event'}
                 fill
-                sizes="(max-width: 768px) 50vw, 33vw"
+                sizes="(max-width: 768px) 50vw, 25vw"
                 className="object-cover transition-transform hover:scale-105"
               />
             </div>
@@ -40,7 +41,7 @@ export default async function GalleryPreview() {
         </div>
 
         <div className="text-center">
-          <Button variant="secondary" href="/about">
+          <Button variant="dark" href="/events">
             View Full Gallery
           </Button>
         </div>

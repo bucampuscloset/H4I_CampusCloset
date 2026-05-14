@@ -30,7 +30,7 @@ const actions = [
 
 export default function GetInvolved() {
   return (
-    <section className="bg-brand-cream px-6 py-20 md:px-12">
+    <section className="bg-white px-6 py-20 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
