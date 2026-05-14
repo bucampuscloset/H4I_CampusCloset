@@ -23,7 +23,6 @@ async function main() {
         location: 'GSU Ballroom, 775 Commonwealth Ave',
         description: 'Our biggest swap of the semester! Bring up to 10 items and take home something new.',
         itemLimit: 10,
-        isPast: true,
       },
     }),
     prisma.event.create({
@@ -33,7 +32,6 @@ async function main() {
         date: new Date('2025-02-15T10:00:00Z'),
         location: 'Warren Towers Lobby',
         description: 'Collecting winter coats and warm clothing for local shelters.',
-        isPast: true,
       },
     }),
     prisma.event.create({
@@ -44,7 +42,6 @@ async function main() {
         location: 'Marsh Plaza Tent',
         description: 'Welcome back swap to kick off the semester sustainably.',
         itemLimit: 8,
-        isPast: true,
       },
     }),
     prisma.event.create({
@@ -55,7 +52,6 @@ async function main() {
         location: 'FitRec Gymnasium',
         description: 'Don\'t throw away your clothes when you move out — swap them!',
         itemLimit: 15,
-        isPast: false,
       },
     }),
     prisma.event.create({
@@ -66,7 +62,6 @@ async function main() {
         location: 'Marsh Plaza Tent',
         description: 'Welcome back swap to kick off the semester sustainably. Bring your summer finds!',
         itemLimit: 10,
-        isPast: false,
       },
     }),
     prisma.event.create({
@@ -76,7 +71,6 @@ async function main() {
         date: new Date('2026-10-05T10:00:00Z'),
         location: 'Warren Towers Lobby',
         description: 'Collecting winter coats and warm clothing for the cold months ahead.',
-        isPast: false,
       },
     }),
   ])
