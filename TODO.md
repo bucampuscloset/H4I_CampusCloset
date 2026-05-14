@@ -25,19 +25,19 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] **Server-side email validation** — `POST /api/contact` only checks non-empty. Add format validation.
 - [ ] **OpenGraph image for social previews** — No `og:image` set.
 - [ ] **Admin portal mobile responsiveness** — Fixed `w-64` sidebar with no responsive breakpoints.
-- [ ] **Contact info in constants** — `campuscloset@bu.edu` and Instagram handle hardcoded in multiple files. Move to `constants.ts`.
+- [x] ~~**Contact info in constants**~~ — Already editable from Admin > Content > Footer & Contact via SiteContent system
 
 ---
 
 ## UI Fixes (Figma Alignment)
 
-- [ ] **Events: add photo gallery** — Bare heading removed; need a gallery component pulling from `GalleryPhoto` table (reuse `PhotoGallery` from About page)
-- [ ] **Events: SwapVsDrive card borders** — Should use `border-[3px] border-brand-dark-olive` (Swap) and `border-brand-blue` (Drive)
-- [ ] **Events: SwapVsDrive title font** — Should be `font-body text-[36px] font-extrabold`
-- [ ] **Events: Guidelines box border** — Should be `rounded-[20px] border-[3px] border-[rgba(197,184,174,0.8)]`
-- [ ] **About: impact stat card borders** — Currently `border-2 border-brand-text` (heavy). Consider lighter borders.
+- [x] ~~**Events: add photo gallery**~~ — Reuses `PhotoGallery` from About page
+- [x] ~~**Events: SwapVsDrive card borders**~~ — Brand-colored 3px borders applied
+- [x] ~~**Events: SwapVsDrive title font**~~ — Now `font-body text-[36px] font-extrabold`
+- [x] ~~**Events: Guidelines box border**~~ — Updated to `rounded-[20px] border-[3px]`
+- [x] ~~**About: impact stat card borders**~~ — Lightened to `border border-gray-200`
 - [ ] **Donate: Accept/Reject layout** — Figma shows unified card with vertical divider (currently two separate cards)
-- [ ] **FAQ: "Still have questions?" background** — Currently cream, Figma shows darker olive-green
+- [x] ~~**FAQ: "Still have questions?" background**~~ — Changed to dark olive with white text
 
 ---
 
@@ -47,9 +47,9 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] Analytics (Vercel Analytics or Plausible)
 - [ ] Admin user management UI
 - [ ] Pagination on admin lists
-- [ ] Convert `Event.type` to Prisma enum
-- [ ] Replace `Event.isPast` with date-based queries
-- [ ] `ContactRequest.preferredDate` should be DateTime
+- [x] ~~Convert `Event.type` to Prisma enum~~ — Already done in schema
+- [x] ~~Replace `Event.isPast` with date-based queries~~ — Removed from schema and all code
+- [x] ~~`ContactRequest.preferredDate` should be DateTime~~ — Already DateTime in schema
 - [ ] Privacy policy page
 - [ ] Admin user guide for eboard
 
@@ -61,5 +61,5 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] Staging environment
 - [ ] Social sharing for events
 - [ ] Favicon format (convert `icon.jpg` to `.ico` or `.png`)
-- [ ] Loading skeletons (`loading.tsx` for route transitions)
+- [x] ~~Loading skeletons~~ — Added `loading.tsx` for all public and admin routes
 - [ ] Stale branch cleanup (merged remote branches)
