@@ -106,7 +106,7 @@ export default async function DonatePage() {
       <div className="h-9 w-full bg-brand-olive-light border-y-2 border-brand-brown" />
 
       {/* ── Section 2: How to Donate ────────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-white py-16">
         <div className={cn(INNER, 'text-center')}>
           <h2 className="font-display text-3xl text-brand-text">How to Donate</h2>
           <p className="mt-3 font-body text-brand-text/70">
@@ -119,7 +119,7 @@ export default async function DonatePage() {
                 <div className={cn('flex h-16 w-16 items-center justify-center rounded-full', step.bg)}>
                   {step.icon}
                 </div>
-                <p className="mt-4 font-heading text-[17px] font-bold text-brand-text">
+                <p className="mt-4 font-body text-[17px] font-extrabold text-brand-text">
                   {step.label}
                 </p>
                 <p className="mt-2 font-body text-sm text-brand-text/70">{step.desc}</p>
@@ -130,7 +130,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 3: What We Accept ───────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-brand-cream py-16">
         <div className={INNER}>
           <div className="grid gap-6 md:grid-cols-2">
             {/* Accept */}
@@ -139,7 +139,7 @@ export default async function DonatePage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-olive">
                   <CheckIcon className="h-5 w-5 text-white" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-brand-text">What We Accept</h3>
+                <h3 className="font-body text-xl font-extrabold text-brand-text">What We Accept</h3>
               </div>
 
               <ul className="mt-6 flex flex-col gap-3">
@@ -162,7 +162,7 @@ export default async function DonatePage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-brown">
                   <XIcon className="h-5 w-5 text-white" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-brand-text">
+                <h3 className="font-body text-xl font-extrabold text-brand-text">
                   What We Don&apos;t Accept
                 </h3>
               </div>
@@ -204,7 +204,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 5: Schedule a Pickup ────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-brand-cream py-16">
         <div className={INNER}>
           <div className="text-center">
             <h2 className="font-display text-3xl text-brand-text">Schedule a Pickup</h2>

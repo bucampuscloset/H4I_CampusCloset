@@ -81,7 +81,7 @@ export default function PickupForm() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="font-heading text-[20px] font-bold text-brand-text">Request Submitted!</h3>
+        <h3 className="font-body text-[20px] font-extrabold text-brand-text">Request Submitted!</h3>
         <p className="mt-2 font-body text-[16px] text-brand-text/70">
           Your pickup request has been submitted! We&apos;ll be in touch soon.
         </p>

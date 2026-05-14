@@ -56,7 +56,7 @@ export default function DonationMap() {
         .map((bin) => (
           <Marker key={bin.id} position={[bin.latitude, bin.longitude]}>
             <Popup>
-              <span className="font-bold">{bin.name}</span>
+              <span className="font-body font-extrabold">{bin.name}</span>
               <br />
               {bin.building}
             </Popup>
