@@ -17,8 +17,12 @@ interface Event {
 
 type ApiEvent = Omit<Event, 'date'> & { date: string }
 
+interface EventsPageClientProps {
+  content: Record<string, string>
+}
+
 // Events page: calendar, swap/drive explainer, past event photos.
-export default function EventsPageClient() {
+export default function EventsPageClient({ content }: EventsPageClientProps) {
   const [events, setEvents] = useState<Event[]>([])
 
   const upcomingEvents = events
@@ -58,9 +62,9 @@ export default function EventsPageClient() {
   return (
     <div>
       <div className="mx-6 my-10 md:m-[50px] text-center">
-        <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">Events</h1>
+        <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">{content['events.page_heading']}</h1>
         <p className="font-body text-[24px]">
-          Find upcoming clothing swaps, donation drives, and more campus closet events!
+          {content['events.page_subtitle']}
         </p>
         <Badge className="mx-auto mt-4 flex h-[66px] w-full max-w-[420px] items-center justify-center border-2 px-4 py-3 text-center text-[22px]">
           {events.filter((e) => e.type === 'swap' || e.type === 'drive').length}+ events hosted
@@ -73,8 +77,8 @@ export default function EventsPageClient() {
 
       <div className="mx-6 md:mx-[50px] mt-[30px]">
         <div className="mb-6 text-center">
-          <h2 className="font-display text-[40px]">Upcoming Swaps and Drives</h2>
-          <p className="font-body text-brand-text/70">Join us at our next clothing swap!</p>
+          <h2 className="font-display text-[40px]">{content['events.upcoming_heading']}</h2>
+          <p className="font-body text-brand-text/70">{content['events.upcoming_subtitle']}</p>
         </div>
 
         {upcomingEvents.length > 0 ? (
@@ -85,7 +89,7 @@ export default function EventsPageClient() {
           </div>
         ) : (
           <p className="mb-12 font-body text-brand-text/60">
-            No upcoming events - check back soon.
+            {content['events.no_events']}
           </p>
         )}
       </div>

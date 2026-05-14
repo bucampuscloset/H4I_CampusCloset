@@ -53,24 +53,24 @@ const DEFAULT_ACCEPT = 'Tops (t-shirts, blouses, long sleeves)\nBottoms (jeans, 
 
 const DEFAULT_REJECT = 'Undergarments\nShoes\nBedding or linens\nHeavily damaged items'
 
-const HOW_STEPS = [
+const HOW_STEPS_TEMPLATE = [
   {
     icon: <CheckIcon className="h-8 w-8 text-white" />,
     bg: 'bg-brand-olive',
-    label: '1. Check Quality',
-    desc: 'Ensure items are clean, wearable, and in good condition before donating.',
+    titleKey: 'donate.step1_title' as const,
+    descKey: 'donate.step1_desc' as const,
   },
   {
     icon: <BoxIcon className="h-8 w-8 text-white" />,
     bg: 'bg-brand-tan',
-    label: '2. Drop Off or Schedule',
-    desc: 'Find a campus bin near you or schedule a free pickup at your building.',
+    titleKey: 'donate.step2_title' as const,
+    descKey: 'donate.step2_desc' as const,
   },
   {
     icon: <HandsIcon className="h-8 w-8 text-white" />,
     bg: 'bg-brand-olive-light',
-    label: '3. We Handle the Rest',
-    desc: 'We sort, display, and redistribute your items at our next swap event.',
+    titleKey: 'donate.step3_title' as const,
+    descKey: 'donate.step3_desc' as const,
   },
 ]
 
@@ -83,6 +83,22 @@ export default async function DonatePage() {
   const content = await getContentMap({
     'donate.accept_items': DEFAULT_ACCEPT,
     'donate.reject_items': DEFAULT_REJECT,
+    'donate.hero_heading': 'Donate Clothes',
+    'donate.hero_subtitle': "Help keep clothing out of landfills and make sustainable fashion accessible to BU students. Your donations make our swaps possible.",
+    'donate.how_heading': 'How to Donate',
+    'donate.how_subtitle': 'Simple steps to make your clothing donation count!',
+    'donate.step1_title': '1. Check Quality',
+    'donate.step1_desc': 'Ensure items are clean, wearable, and in good condition before donating.',
+    'donate.step2_title': '2. Drop Off or Schedule',
+    'donate.step2_desc': 'Find a campus bin near you or schedule a free pickup at your building.',
+    'donate.step3_title': '3. We Handle the Rest',
+    'donate.step3_desc': 'We sort, display, and redistribute your items at our next swap event.',
+    'donate.locations_heading': 'Drop-Off Locations',
+    'donate.locations_subtitle': 'Find convenient donation bins across BU campus',
+    'donate.pickup_heading': 'Schedule a Pickup',
+    'donate.pickup_subtitle': "Can't make it to a bin? Request a pickup and we'll coordinate a time.",
+    'donate.questions_heading': 'Questions?',
+    'donate.questions_subtitle': "We're here to help with any questions about donating to BU Campus Closet.",
   })
   const ACCEPT_ITEMS = content['donate.accept_items'].split('\n').filter(Boolean)
   const REJECT_ITEMS = content['donate.reject_items'].split('\n').filter(Boolean)
@@ -93,11 +109,10 @@ export default async function DonatePage() {
       <section className="bg-brand-cream py-20">
         <div className={cn(INNER, 'text-center')}>
           <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
-            Donate Clothes
+            {content['donate.hero_heading']}
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body text-brand-text/70">
-            Help keep clothing out of landfills and make sustainable fashion accessible to
-            BU students. Your donations make our swaps possible.
+            {content['donate.hero_subtitle']}
           </p>
         </div>
       </section>
@@ -108,21 +123,21 @@ export default async function DonatePage() {
       {/* ── Section 2: How to Donate ────────────────────── */}
       <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">How to Donate</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">{content['donate.how_heading']}</h2>
           <p className="mt-3 font-body text-brand-text/70">
-            Simple steps to make your clothing donation count!
+            {content['donate.how_subtitle']}
           </p>
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {HOW_STEPS.map((step) => (
-              <div key={step.label} className="flex flex-col items-center text-center">
+            {HOW_STEPS_TEMPLATE.map((step) => (
+              <div key={step.titleKey} className="flex flex-col items-center text-center">
                 <div className={cn('flex h-16 w-16 items-center justify-center rounded-full', step.bg)}>
                   {step.icon}
                 </div>
                 <p className="mt-4 font-body text-[17px] font-extrabold text-brand-text">
-                  {step.label}
+                  {content[step.titleKey]}
                 </p>
-                <p className="mt-2 font-body text-sm text-brand-text/70">{step.desc}</p>
+                <p className="mt-2 font-body text-sm text-brand-text/70">{content[step.descKey]}</p>
               </div>
             ))}
           </div>
@@ -183,9 +198,9 @@ export default async function DonatePage() {
       {/* ── Section 4: Drop-Off Locations ───────────────── */}
       <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Drop-Off Locations</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">{content['donate.locations_heading']}</h2>
           <p className="mt-3 font-body text-brand-text/70">
-            Find convenient donation bins across BU campus
+            {content['donate.locations_subtitle']}
           </p>
 
           <div className="mt-8 h-[400px] overflow-hidden rounded-xl">
@@ -207,9 +222,9 @@ export default async function DonatePage() {
       <section className="bg-brand-cream py-20">
         <div className={INNER}>
           <div className="text-center">
-            <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Schedule a Pickup</h2>
+            <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">{content['donate.pickup_heading']}</h2>
             <p className="mt-3 font-body text-brand-text/70">
-              Can&apos;t make it to a bin? Request a pickup and we&apos;ll coordinate a time.
+              {content['donate.pickup_subtitle']}
             </p>
           </div>
 
@@ -222,9 +237,9 @@ export default async function DonatePage() {
       {/* ── Section 6: Questions? ───────────────────────── */}
       <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Questions?</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">{content['donate.questions_heading']}</h2>
           <p className="mt-3 font-body text-brand-text/70">
-            We&apos;re here to help with any questions about donating to BU Campus Closet.
+            {content['donate.questions_subtitle']}
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Button href="/faq" variant="olive">

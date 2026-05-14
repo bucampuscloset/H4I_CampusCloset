@@ -1,43 +1,51 @@
 import { RefreshCw, Leaf, Users } from 'lucide-react'
+import { getContentMap } from '@/lib/site-content'
 
-const pillars = [
-  {
-    title: 'Free Clothing Swaps',
-    description:
-      'Exchange clothes with fellow students at no cost, sustainable fashion made easy.',
-    cardBg: 'bg-brand-olive-light',
-    iconBg: 'bg-brand-olive',
-    icon: <RefreshCw className="h-10 w-10 text-white" strokeWidth={2.5} />,
-  },
-  {
-    title: 'Sustainability First',
-    description:
-      'Keep clothing out of landfills by donating and swapping items on campus.',
-    cardBg: 'bg-brand-lavender-light',
-    iconBg: 'bg-brand-lavender',
-    icon: <Leaf className="h-10 w-10 text-white" strokeWidth={2.5} />,
-  },
-  {
-    title: 'Student-Run',
-    description:
-      'Built by students, for students—creating a sustainable campus together.',
-    cardBg: 'bg-brand-blue-light',
-    iconBg: 'bg-brand-blue',
-    icon: <Users className="h-10 w-10 text-white" strokeWidth={2.5} />,
-  },
-]
+export default async function WhatIsCampusCloset() {
+  const content = await getContentMap({
+    'landing.what_heading': 'What is Campus Closet?',
+    'landing.what_subtitle': 'A student-run sustainability initiative at Boston University promoting circular fashion through free, recurring clothing swaps.',
+    'landing.pillar1_title': 'Free Clothing Swaps',
+    'landing.pillar1_desc': 'Exchange clothes with fellow students at no cost, sustainable fashion made easy.',
+    'landing.pillar2_title': 'Sustainability First',
+    'landing.pillar2_desc': 'Keep clothing out of landfills by donating and swapping items on campus.',
+    'landing.pillar3_title': 'Student-Run',
+    'landing.pillar3_desc': 'Built by students, for students—creating a sustainable campus together.',
+  })
 
-export default function WhatIsCampusCloset() {
+  const pillars = [
+    {
+      title: content['landing.pillar1_title'],
+      description: content['landing.pillar1_desc'],
+      cardBg: 'bg-brand-olive-light',
+      iconBg: 'bg-brand-olive',
+      icon: <RefreshCw className="h-10 w-10 text-white" strokeWidth={2.5} />,
+    },
+    {
+      title: content['landing.pillar2_title'],
+      description: content['landing.pillar2_desc'],
+      cardBg: 'bg-brand-lavender-light',
+      iconBg: 'bg-brand-lavender',
+      icon: <Leaf className="h-10 w-10 text-white" strokeWidth={2.5} />,
+    },
+    {
+      title: content['landing.pillar3_title'],
+      description: content['landing.pillar3_desc'],
+      cardBg: 'bg-brand-blue-light',
+      iconBg: 'bg-brand-blue',
+      icon: <Users className="h-10 w-10 text-white" strokeWidth={2.5} />,
+    },
+  ]
+
   return (
     <section className="bg-white px-6 py-20 md:px-12">
       <div className="mx-auto max-w-[1382px]">
         <div className="mb-12 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
-            What is Campus Closet?
+            {content['landing.what_heading']}
           </h2>
           <p className="mx-auto max-w-2xl font-body text-[15px] text-brand-text/70">
-            A student-run sustainability initiative at Boston University promoting
-            circular fashion through free, recurring clothing swaps.
+            {content['landing.what_subtitle']}
           </p>
         </div>
 

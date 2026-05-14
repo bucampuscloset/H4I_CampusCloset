@@ -16,6 +16,8 @@ import { getContentMap } from '@/lib/site-content'
 export default async function AboutPage() {
   const content = await getContentMap({
     'about.tagline': 'Est. 2021 | Our mission is to cultivate community and environmental responsibility through free, sustainable, and circular clothing consumption.',
+    'about.impact_heading': 'Our Impact',
+    'about.impact_subtitle': 'Since our launch, Campus Closet has made significant steps in promoting sustainable fashion.',
   })
   return (
     <>
@@ -44,10 +46,10 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
             <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
-              Our Impact
+              {content['about.impact_heading']}
             </h2>
             <p className="font-body text-[20px] leading-[28px] text-brand-text">
-              Since our launch, Campus Closet has made significant steps in promoting sustainable fashion.
+              {content['about.impact_subtitle']}
             </p>
           </div>
           <AboutImpactStats />

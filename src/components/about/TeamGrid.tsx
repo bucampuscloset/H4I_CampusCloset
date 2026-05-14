@@ -1,10 +1,16 @@
 import Image from 'next/image'
 import { prisma } from '@/lib/prisma'
 import { cn } from '@/lib/cn'
+import { getContentMap } from '@/lib/site-content'
 
 const ROTATIONS = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2']
 
 export default async function TeamGrid() {
+  const content = await getContentMap({
+    'about.team_heading': 'Meet the E-Board',
+    'about.team_subtitle': 'A dedicated team of students passionate about sustainability, fashion, and community.',
+  })
+
   const members = await prisma.teamMember.findMany({
     orderBy: [{ displayOrder: 'asc' }, { createdAt: 'desc' }],
   }).catch(() => [])
@@ -14,7 +20,7 @@ export default async function TeamGrid() {
       <section className="bg-white px-6 py-20 md:px-12">
         <div className="mx-auto max-w-6xl text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
-            Meet the E-Board
+            {content['about.team_heading']}
           </h2>
           <p className="font-body text-[16px] text-brand-text/60">Team coming soon.</p>
         </div>
@@ -27,10 +33,10 @@ export default async function TeamGrid() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
-            Meet the E-Board
+            {content['about.team_heading']}
           </h2>
           <p className="font-body text-[20px] leading-[28px] text-brand-text">
-            A dedicated team of students passionate about sustainability, fashion, and community.
+            {content['about.team_subtitle']}
           </p>
         </div>
 
