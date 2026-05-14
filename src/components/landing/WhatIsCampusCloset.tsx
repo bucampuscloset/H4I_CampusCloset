@@ -48,7 +48,7 @@ export default function WhatIsCampusCloset() {
               className={`flex flex-col items-center justify-start rounded-[20px] ${pillar.cardBg} px-6 py-10 text-center md:px-8`}
             >
               <div
-                className={`mb-5 flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-full ${pillar.iconBg}`}
+                className={`mb-5 flex h-16 w-16 md:h-[100px] md:w-[100px] shrink-0 items-center justify-center rounded-full ${pillar.iconBg}`}
               >
                 {pillar.icon}
               </div>

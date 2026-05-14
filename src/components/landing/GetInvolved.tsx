@@ -48,7 +48,7 @@ export default function GetInvolved() {
               key={action.title}
               className="flex flex-col items-center rounded-2xl border-2 border-brand-text bg-white px-8 py-10 text-center"
             >
-              <div className="mb-5 flex h-[80px] w-[80px] items-center justify-center rounded-full bg-gray-200">
+              <div className="mb-5 flex h-14 w-14 md:h-[80px] md:w-[80px] items-center justify-center rounded-full bg-gray-200">
                 {action.icon}
               </div>
               <h3 className="mb-2 font-body text-[24px] font-extrabold text-brand-text">

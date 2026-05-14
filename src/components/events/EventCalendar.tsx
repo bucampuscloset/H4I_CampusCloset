@@ -97,9 +97,9 @@ export default function EventCalendar({ events }: EventCalendarProps) {
   const currentMonthString = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
   return (
-    <div className="flex justify-between bg-white p-10">
+    <div className="flex flex-col md:flex-row md:justify-between bg-white p-10">
       
-      <div className="ml-5 mt-[30px] w-[60%]">
+      <div className="ml-5 mt-[30px] w-full md:w-[60%]">
         <h2 className="mb-0 font-display text-[48px]">
           Calendar
         </h2>
@@ -139,7 +139,7 @@ export default function EventCalendar({ events }: EventCalendarProps) {
         })}
       </div>
 
-      <div className="h-[500px] w-[35%] overflow-hidden rounded-xl">
+      <div className="h-[300px] md:h-[500px] w-full md:w-[35%] overflow-hidden rounded-xl">
         <Calendar
           localizer={localizer}
           events={calendarEvents}
