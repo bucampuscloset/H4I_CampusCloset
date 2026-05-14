@@ -48,7 +48,7 @@ export default async function AboutImpactStats() {
         {cards.map((card) => (
           <div
             key={card.label}
-            className={cn('overflow-hidden rounded-[15px] border-2 border-brand-text px-6 py-6', card.bgClass)}
+            className={cn('overflow-hidden rounded-[15px] border border-gray-200 px-6 py-6', card.bgClass)}
           >
             <p className={cn('mb-1 font-body text-[28px] font-extrabold leading-[40px] md:text-[36px]', card.colorClass)}>
               {card.value}

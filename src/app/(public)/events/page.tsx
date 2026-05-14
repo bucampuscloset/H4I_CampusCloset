@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import EventsPageClient from './EventsPageClient'
 import SwapVsDrive from '@/components/events/SwapVsDrive'
+import PhotoGallery from '@/components/about/PhotoGallery'
 
 export const revalidate = 60
 
@@ -14,6 +15,7 @@ export default function EventsPage() {
     <>
       <EventsPageClient />
       <SwapVsDrive />
+      <PhotoGallery />
     </>
   )
 }

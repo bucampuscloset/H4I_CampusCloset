@@ -19,8 +19,8 @@ export default async function SwapVsDrive() {
         </p>
 
         <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="rounded-xl border border-gray-600 bg-brand-olive-light p-8 shadow-sm">
-            <h2 className="mb-6 text-3xl font-bold">Clothing Swap</h2>
+          <div className="rounded-[20px] border-[3px] border-brand-dark-olive bg-brand-olive-light p-8 shadow-sm">
+            <h2 className="mb-6 font-body text-[36px] font-extrabold">Clothing Swap</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-bold">Purpose</h3>
@@ -41,8 +41,8 @@ export default async function SwapVsDrive() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-gray-500 bg-brand-blue-light p-8 shadow-sm">
-            <h2 className="mb-6 text-3xl font-bold">Clothing Drive</h2>
+          <div className="rounded-[20px] border-[3px] border-brand-blue bg-brand-blue-light p-8 shadow-sm">
+            <h2 className="mb-6 font-body text-[36px] font-extrabold">Clothing Drive</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-bold">Purpose</h3>
@@ -64,7 +64,7 @@ export default async function SwapVsDrive() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-4xl rounded-xl border border-amber-900/20 bg-brand-cream p-6 shadow-sm">
+        <div className="mx-auto mt-10 max-w-4xl rounded-[20px] border-[3px] border-[rgba(197,184,174,0.8)] bg-brand-cream p-6 shadow-sm">
           <h2 className="mb-6 text-center text-2xl font-bold">General Guidelines for All Events</h2>
           <div className="flex flex-col items-center justify-center gap-4 text-sm md:flex-row md:gap-16">
             {guidelines.map((line) => (

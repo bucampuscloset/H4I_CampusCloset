@@ -34,12 +34,12 @@ export default async function FaqPage() {
         <FaqList items={items} />
       </section>
 
-      <section className="bg-brand-cream px-6 py-20 md:px-12">
+      <section className="bg-brand-olive px-6 py-20 md:px-12">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <h2 className="mb-4 font-display text-[40px] text-brand-text md:text-[54px]">
+          <h2 className="mb-4 font-display text-[40px] text-white md:text-[54px]">
             Still have questions?
           </h2>
-          <p className="font-body text-[16px] leading-[1.4] text-brand-text md:text-[24px] md:leading-[24px]">
+          <p className="font-body text-[16px] leading-[1.4] text-white/90 md:text-[24px] md:leading-[24px]">
             Can&apos;t find the answer you&apos;re looking for? Fill out the form below
             and our team will get back to you within 24 hours.
           </p>
