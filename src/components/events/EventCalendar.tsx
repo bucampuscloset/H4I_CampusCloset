@@ -1,10 +1,35 @@
 'use client';
 import { useState } from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer, type ToolbarProps } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { enUS } from "date-fns/locale/en-US";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function CustomToolbar({ label, onNavigate }: ToolbarProps<any>) {
+  return (
+    <div className="mb-2 flex items-center justify-between px-2 py-3">
+      <button
+        onClick={() => onNavigate('PREV')}
+        className="text-[24px] text-brand-text/70 hover:text-brand-text"
+        aria-label="Previous month"
+      >
+        &lsaquo;
+      </button>
+      <span className="font-body text-[20px] font-extrabold text-brand-text">
+        {label.split(' ')[0]}
+      </span>
+      <button
+        onClick={() => onNavigate('NEXT')}
+        className="text-[24px] text-brand-text/70 hover:text-brand-text"
+        aria-label="Next month"
+      >
+        &rsaquo;
+      </button>
+    </div>
+  );
+}
 
 interface Event {
   id: string;
@@ -124,10 +149,10 @@ export default function EventCalendar({ events }: EventCalendarProps) {
           endAccessor="end"
           defaultView="month"
           views={["month"]}
-          // 4. Bind the calendar to our state variables
           date={currentDate}
           onNavigate={(newDate) => setCurrentDate(newDate)}
           className="h-full font-body"
+          components={{ toolbar: CustomToolbar }}
         />
       </div>
 

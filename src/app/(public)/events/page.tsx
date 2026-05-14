@@ -14,9 +14,6 @@ export default function EventsPage() {
     <>
       <EventsPageClient />
       <SwapVsDrive />
-      <h2 className="m-10 text-center font-display text-5xl font-bold">
-        Photos From Past Events
-      </h2>
     </>
   )
 }

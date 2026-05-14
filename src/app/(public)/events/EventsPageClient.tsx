@@ -63,7 +63,7 @@ export default function EventsPageClient() {
         <p className="font-body text-[24px]">
           Find upcoming clothing swaps, donation drives, and more campus closet events!
         </p>
-        <Badge className="mx-auto mt-2 flex h-[52.17px] w-[342.93px] items-center justify-center border-2 px-2.5 py-2.5 text-center">
+        <Badge className="mx-auto mt-4 flex h-[66px] w-[420px] items-center justify-center border-2 px-4 py-3 text-center text-[22px]">
           {events.filter((e) => e.type === 'swap' || e.type === 'drive').length}+ events hosted
         </Badge>
       </div>
@@ -73,9 +73,9 @@ export default function EventsPageClient() {
       <EventCalendar events={events} />
 
       <div className="mx-[50px] mt-[30px]">
-        <div className="mb-6">
+        <div className="mb-6 text-center">
           <h2 className="font-display text-[40px]">Upcoming Swaps and Drives</h2>
-          <p className="font-body">Join us at our next clothing swap!</p>
+          <p className="font-body text-brand-text/70">Join us at our next clothing swap!</p>
         </div>
 
         {upcomingEvents.length > 0 ? (
