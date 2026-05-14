@@ -16,6 +16,7 @@ const ADMIN_LINKS = [
   { label: 'Photos', href: '/admin/photos' },
   { label: 'Site Content', href: '/admin/content' },
   { label: 'Admin Users', href: '/admin/users' },
+  { label: 'Help', href: '/admin/help' },
 ] as const
 
 export default function AdminSidebar() {
