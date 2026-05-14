@@ -38,7 +38,7 @@ export default async function PhotoGallery() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 grid-rows-4 gap-3" style={{ gridAutoRows: '160px' }}>
+        <div className="grid grid-cols-3 gap-3" style={{ gridTemplateRows: 'repeat(4, 160px)' }}>
           {photos.slice(0, 7).map((photo, i) => (
             <div
               key={photo.id}
