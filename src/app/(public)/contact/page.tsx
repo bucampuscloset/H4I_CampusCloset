@@ -51,7 +51,7 @@ export default async function ContactPage() {
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
               </div>
-              <p className="font-heading text-[16px] font-bold text-brand-text">Email</p>
+              <p className="font-body text-[16px] font-extrabold text-brand-text">Email</p>
               <a
                 href={`mailto:${content['footer.email']}`}
                 className="font-body text-[15px] text-brand-olive underline-offset-2 hover:underline"
@@ -69,7 +69,7 @@ export default async function ContactPage() {
                   <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                 </svg>
               </div>
-              <p className="font-heading text-[16px] font-bold text-brand-text">Instagram</p>
+              <p className="font-body text-[16px] font-extrabold text-brand-text">Instagram</p>
               <a
                 href={content['footer.instagram_url']}
                 target="_blank"

@@ -140,7 +140,7 @@ export default function ContactForm() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="font-heading text-[22px] font-bold text-brand-text">Message Sent!</h3>
+          <h3 className="font-body text-[22px] font-extrabold text-brand-text">Message Sent!</h3>
           <p className="font-body text-[16px] leading-[1.5] text-brand-text/70">
             Thanks for reaching out. We&apos;ll get back to you within 24 hours.
           </p>
