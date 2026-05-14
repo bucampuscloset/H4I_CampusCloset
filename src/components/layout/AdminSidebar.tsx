@@ -94,14 +94,6 @@ function BookIcon({ className }: { className?: string }) {
   )
 }
 
-function LeafIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 20 20" fill="currentColor">
-      <path fillRule="evenodd" d="M4.16 4.16c1.914-1.914 5.048-2.136 7.236-0.644 1.588 1.082 4.257 3.79 5.444 6.444.594 1.328.654 2.516-.08 3.648-.66 1.018-1.992 1.232-3.24.84a12.016 12.016 0 01-3.52-1.808c-.48.56-1.04 1.2-1.64 1.8l-.72.72a1 1 0 01-1.414-1.414l.72-.72c.56-.56 1.08-1.12 1.56-1.64A12.016 12.016 0 014.8 8.36c-.392-1.248-.178-2.58.84-3.24a3.77 3.77 0 01-1.48 0l.04-.96h-.04z" clipRule="evenodd" />
-    </svg>
-  )
-}
-
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
   '/admin': DashboardIcon,
   '/admin/events': CalendarIcon,
@@ -141,8 +133,7 @@ export default function AdminSidebar() {
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-gray-200 bg-white">
       <div className="border-b border-gray-200 px-6 py-5">
-        <Link href="/admin" className="flex items-center gap-2">
-          <LeafIcon className="h-5 w-5 text-brand-olive" />
+        <Link href="/admin">
           <span className="font-display text-[20px] text-brand-brown">CC Admin</span>
         </Link>
       </div>

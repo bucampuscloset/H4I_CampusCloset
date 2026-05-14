@@ -38,11 +38,10 @@ export default function AdminDashboardPage() {
           <a
             key={item.href}
             href={item.href}
-            className={`group relative overflow-hidden rounded-xl border border-gray-200 border-l-4 ${item.color} bg-white p-5 transition-all hover:shadow-md hover:-translate-y-0.5`}
+            className={`rounded-xl border border-gray-200 border-l-4 ${item.color} bg-white p-5 transition-all hover:shadow-md hover:-translate-y-0.5`}
           >
-            <div className="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-brand-olive-light/20 transition-transform group-hover:scale-110" />
-            <h2 className="relative font-heading text-[16px] font-bold text-brand-text">{item.label}</h2>
-            <p className="relative mt-1 font-body text-[13px] text-brand-text/60">{item.desc}</p>
+            <h2 className="font-heading text-[16px] font-bold text-brand-text">{item.label}</h2>
+            <p className="mt-1 font-body text-[13px] text-brand-text/60">{item.desc}</p>
           </a>
         ))}
       </div>
