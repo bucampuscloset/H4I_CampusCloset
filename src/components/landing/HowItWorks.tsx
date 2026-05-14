@@ -1,36 +1,48 @@
 import Button from '@/components/ui/Button'
 import { cn } from '@/lib/cn'
+import { getContentMap } from '@/lib/site-content'
 
-const steps = [
-  {
-    number: '1',
-    title: 'Donate',
-    description: 'Bring clothes to donate!',
-    bg: 'bg-brand-dark-olive',
-  },
-  {
-    number: '2',
-    title: 'Swap & Discover',
-    description: 'Explore curated racks and take what you love.',
-    bg: 'bg-brand-terra',
-  },
-  {
-    number: '3',
-    title: 'Feel Good About It',
-    description: 'Reduce waste and support a more sustainable campus.',
-    bg: 'bg-brand-dark-olive',
-  },
-]
+export default async function HowItWorks() {
+  const content = await getContentMap({
+    'landing.how_heading': 'How it Works',
+    'landing.how_subtitle': 'Three Simple Steps to Sustainable Fashion!',
+    'landing.step1_title': 'Donate',
+    'landing.step1_desc': 'Bring clothes to donate!',
+    'landing.step2_title': 'Swap & Discover',
+    'landing.step2_desc': 'Explore curated racks and take what you love.',
+    'landing.step3_title': 'Feel Good About It',
+    'landing.step3_desc': 'Reduce waste and support a more sustainable campus.',
+  })
 
-export default function HowItWorks() {
+  const steps = [
+    {
+      number: '1',
+      title: content['landing.step1_title'],
+      description: content['landing.step1_desc'],
+      bg: 'bg-brand-dark-olive',
+    },
+    {
+      number: '2',
+      title: content['landing.step2_title'],
+      description: content['landing.step2_desc'],
+      bg: 'bg-brand-terra',
+    },
+    {
+      number: '3',
+      title: content['landing.step3_title'],
+      description: content['landing.step3_desc'],
+      bg: 'bg-brand-dark-olive',
+    },
+  ]
+
   return (
     <section className="bg-brand-cream px-6 py-20 md:px-12">
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="mb-2 font-display text-[40px] text-brand-text md:text-[52px]">
-          How it Works
+          {content['landing.how_heading']}
         </h2>
         <p className="mb-14 font-body text-[15px] text-brand-text/70">
-          Three Simple Steps to Sustainable Fashion!
+          {content['landing.how_subtitle']}
         </p>
 
         <div className="mb-12 grid gap-12 md:grid-cols-3">

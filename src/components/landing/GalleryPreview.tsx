@@ -1,8 +1,14 @@
 import Image from 'next/image'
 import { prisma } from '@/lib/prisma'
 import Button from '@/components/ui/Button'
+import { getContentMap } from '@/lib/site-content'
 
 export default async function GalleryPreview() {
+  const content = await getContentMap({
+    'landing.gallery_heading': 'See Us in Action',
+    'landing.gallery_subtitle': 'Campus Closet is a sustainability initiative on campus, aiming to promote sustainable fashion and circular consumption through free clothing swaps on campus.',
+  })
+
   const photos = await prisma.galleryPhoto.findMany({
     orderBy: [{ displayOrder: 'asc' }, { createdAt: 'desc' }],
     take: 4,
@@ -15,11 +21,10 @@ export default async function GalleryPreview() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
-            See Us in Action
+            {content['landing.gallery_heading']}
           </h2>
           <p className="mx-auto max-w-2xl font-body text-[15px] text-brand-text/70">
-            Campus Closet is a sustainability initiative on campus, aiming to promote sustainable
-            fashion and circular consumption through free clothing swaps on campus.
+            {content['landing.gallery_subtitle']}
           </p>
         </div>
 

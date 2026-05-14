@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { prisma } from '@/lib/prisma'
 import { cn } from '@/lib/cn'
+import { getContentMap } from '@/lib/site-content'
 
 const KG_TO_LBS = 2.20462
 
@@ -9,6 +10,11 @@ function fmt(n: number) {
 }
 
 export default async function WhyItMatters() {
+  const content = await getContentMap({
+    'landing.why_heading': 'Why it Matters?',
+    'landing.why_body': "The fashion industry is one of the world's most polluting industries. By swapping instead of buying, you help reduce waste, conserve water, and lower carbon emissions — one outfit at a time.",
+  })
+
   const [agg, swapCount] = await Promise.all([
     prisma.impactStats.aggregate({
       _sum: { itemsReused: true, attendance: true, wasteDivertedKg: true, waterSavedL: true, carbonSavedKg: true },
@@ -33,13 +39,10 @@ export default async function WhyItMatters() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
         <div>
           <h2 className="mb-4 font-display text-[40px] text-brand-text md:text-[52px]">
-            Why it Matters?
+            {content['landing.why_heading']}
           </h2>
           <p className="mb-8 font-body text-[15px] leading-relaxed text-brand-text/70 md:text-[18px]">
-            The fashion industry is one of the world&apos;s most polluting
-            industries. Clothing swaps help BU students extend the life of
-            garments, reduce waste, and make sustainable fashion more
-            accessible on campus.
+            {content['landing.why_body']}
           </p>
 
           {hasStats ? (
