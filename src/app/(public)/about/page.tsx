@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 }
 import MissionSection from '@/components/about/MissionSection'
 import TeamGrid from '@/components/about/TeamGrid'
-import PhotoGallery from '@/components/about/PhotoGallery'
 import AboutImpactStats from '@/components/about/AboutImpactStats'
 import { getContentMap } from '@/lib/site-content'
 
@@ -56,8 +55,6 @@ export default async function AboutPage() {
       </section>
 
       <TeamGrid />
-
-      <PhotoGallery />
     </>
   )
 }
