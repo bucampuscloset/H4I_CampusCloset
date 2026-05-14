@@ -13,7 +13,7 @@ export default async function SwapVsDrive() {
 
   return (
     <div className="w-full bg-white">
-      <div className="mx-auto max-w-5xl p-8 font-body text-black">
+      <div className="mx-auto max-w-5xl p-4 md:p-8 font-body text-black">
         <p className="mb-10 text-center font-display text-5xl font-bold">
           Clothing Swap Vs. Drive
         </p>

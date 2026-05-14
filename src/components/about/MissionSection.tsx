@@ -28,7 +28,7 @@ export default async function MissionSection() {
   })
 
   return (
-    <section className="bg-white px-3 py-20 md:px-6">
+    <section className="bg-white px-6 py-20 md:px-6">
       <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16">
         <div className="relative aspect-[6/5] overflow-hidden rounded-[20px]">
           <Image
