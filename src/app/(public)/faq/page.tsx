@@ -20,7 +20,7 @@ export default async function FaqPage() {
     <>
       <section className="bg-brand-cream px-6 pb-48 pt-16 text-center md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h1 className="mb-4 font-display text-[36px] leading-[1.1] text-brand-text md:text-[52px]">
+          <h1 className="mb-4 font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
             Frequently Asked Questions
           </h1>
           <p className="mx-auto max-w-3xl font-body text-[16px] leading-[1.4] text-brand-text md:text-[20px] md:leading-[28px]">

@@ -92,7 +92,7 @@ export default async function DonatePage() {
       {/* ── Section 1: Hero ─────────────────────────────── */}
       <section className="bg-brand-cream py-16">
         <div className={cn(INNER, 'text-center')}>
-          <h1 className="font-display text-4xl md:text-5xl text-brand-text">
+          <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
             Donate Clothes
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body text-brand-text/70">
