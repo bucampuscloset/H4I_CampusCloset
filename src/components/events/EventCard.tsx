@@ -38,7 +38,7 @@ export default function EventCard({ event, colorIndex }: EventCardProps) {
       <div
         className={cn("top-placeholder flex h-56 items-center justify-center rounded-t-[20px]", chosenColor)}
       >
-        <svg className="h-[72px] w-[72px] text-brand-text/40" viewBox="0 0 24 24" fill="currentColor">
+        <svg className="h-12 w-12 md:h-[72px] md:w-[72px] text-brand-text/40" viewBox="0 0 24 24" fill="currentColor">
           <path d="M6 2a1 1 0 011 1v1h10V3a1 1 0 112 0v1h1a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h1V3a1 1 0 011-1zm-2 8v10h16V10H4zm3 2h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z" />
         </svg>
       </div>
