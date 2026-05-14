@@ -6,8 +6,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { enUS } from "date-fns/locale/en-US";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function CustomToolbar({ label, onNavigate }: ToolbarProps<any>) {
+function CustomToolbar({ label, onNavigate }: ToolbarProps<Record<string, unknown>>) {
   return (
     <div className="mb-2 flex items-center justify-between px-2 py-3">
       <button
