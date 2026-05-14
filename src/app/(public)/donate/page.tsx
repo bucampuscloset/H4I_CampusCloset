@@ -230,7 +230,7 @@ export default async function DonatePage() {
             <Button href="/faq" variant="olive">
               View FAQ Page
             </Button>
-            <Button href="/contact" className="rounded-full bg-brand-tan text-white hover:opacity-90">
+            <Button href="/contact" variant="tan">
               Contact Us
             </Button>
           </div>
