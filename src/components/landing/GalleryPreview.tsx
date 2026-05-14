@@ -11,7 +11,7 @@ export default async function GalleryPreview() {
   if (photos.length === 0) return null
 
   return (
-    <section className="bg-white px-6 py-20 md:px-12">
+    <section className="bg-brand-cream px-6 py-20 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">

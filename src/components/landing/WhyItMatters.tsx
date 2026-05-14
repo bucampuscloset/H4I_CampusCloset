@@ -22,10 +22,10 @@ export default async function WhyItMatters() {
   const hasStats = items > 0 || attendance > 0 || wasteLbs > 0 || swapCount > 0
 
   const stats = [
-    { value: fmt(items), label: 'Clothing Items Swapped', color: 'text-brand-dark-olive' },
-    { value: fmt(attendance), label: 'Students participated', color: 'text-brand-terra' },
-    { value: `${swapCount}+`, label: 'Swap Events Hosted', color: 'text-brand-dark-olive' },
-    { value: `${wasteLbs} lbs`, label: 'Waste Diverted', color: 'text-brand-terra' },
+    { value: fmt(items), label: 'Clothing Items Swapped', color: 'text-brand-dark-olive', bg: 'bg-brand-stat-green' },
+    { value: fmt(attendance), label: 'Students participated', color: 'text-brand-terra', bg: 'bg-brand-stat-terra' },
+    { value: `${swapCount}+`, label: 'Swap Events Hosted', color: 'text-brand-brown-light', bg: 'bg-brand-stat-tan' },
+    { value: `${wasteLbs} lbs`, label: 'Waste Diverted', color: 'text-brand-lavender', bg: 'bg-brand-lavender-light' },
   ]
 
   return (
@@ -35,7 +35,7 @@ export default async function WhyItMatters() {
           <h2 className="mb-4 font-display text-[40px] text-brand-text md:text-[52px]">
             Why it Matters?
           </h2>
-          <p className="mb-8 font-body text-[15px] leading-relaxed text-brand-text/70">
+          <p className="mb-8 font-body text-[15px] leading-relaxed text-brand-text/70 md:text-[18px]">
             The fashion industry is one of the world&apos;s most polluting
             industries. Clothing swaps help BU students extend the life of
             garments, reduce waste, and make sustainable fashion more
@@ -43,16 +43,16 @@ export default async function WhyItMatters() {
           </p>
 
           {hasStats ? (
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-xl border border-gray-200 bg-brand-cream px-5 py-4"
+                  className={cn('rounded-[15px] px-6 py-6', stat.bg)}
                 >
-                  <p className={cn('font-body text-[24px] font-extrabold', stat.color)}>
+                  <p className={cn('font-body text-[28px] font-extrabold leading-tight md:text-[36px]', stat.color)}>
                     {stat.value}
                   </p>
-                  <p className="font-body text-[13px] text-brand-text/70">
+                  <p className="font-body text-[14px] text-brand-text md:text-[16px]">
                     {stat.label}
                   </p>
                 </div>

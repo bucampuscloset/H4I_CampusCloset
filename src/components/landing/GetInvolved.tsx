@@ -1,26 +1,30 @@
 import Button from '@/components/ui/Button'
+import { RefreshCw, Leaf, Users } from 'lucide-react'
 
 const actions = [
   {
     title: 'Attend a Swap',
     description:
-      'Join our next clothing swap event and discover free, curated pieces from fellow students.',
+      'Exchange clothes with fellow students at no cost, sustainable fashion made easy.',
     cta: 'See Events',
     href: '/events',
+    icon: <RefreshCw className="h-8 w-8 text-brand-text" strokeWidth={2.5} />,
   },
   {
     title: 'Donate Clothes',
     description:
-      'Drop off gently-used items at a campus bin or schedule a pickup — keep clothing in circulation.',
-    cta: 'Learn How',
+      'Keep clothing out of landfills by donating and swapping items on campus.',
+    cta: 'Donate',
     href: '/donate',
+    icon: <Leaf className="h-8 w-8 text-brand-text" strokeWidth={2.5} />,
   },
   {
     title: 'Join the Team',
     description:
-      'Help organize events, manage donations, and grow Campus Closet across BU and beyond.',
-    cta: 'Apply Now',
+      'Built by students, for students—creating a sustainable campus together.',
+    cta: 'Get Involved',
     href: '/about',
+    icon: <Users className="h-8 w-8 text-brand-text" strokeWidth={2.5} />,
   },
 ]
 
@@ -33,23 +37,27 @@ export default function GetInvolved() {
             How Can You Get Involved?
           </h2>
           <p className="mx-auto max-w-2xl font-body text-[15px] text-brand-text/70">
-            There&apos;s a place for everyone in the Campus Closet community.
+            Campus Closet is a sustainability initiative on campus, aiming to promote sustainable
+            fashion and circular consumption through free clothing swaps on campus.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {actions.map((action) => (
             <div
               key={action.title}
-              className="flex flex-col rounded-xl border border-gray-200 bg-white p-8"
+              className="flex flex-col items-center rounded-2xl border-2 border-brand-text bg-white px-8 py-10 text-center"
             >
-              <h3 className="mb-3 font-heading text-[20px] font-bold text-brand-text">
+              <div className="mb-5 flex h-[80px] w-[80px] items-center justify-center rounded-full bg-gray-200">
+                {action.icon}
+              </div>
+              <h3 className="mb-2 font-body text-[24px] font-extrabold text-brand-text">
                 {action.title}
               </h3>
-              <p className="mb-6 flex-1 font-body text-[14px] leading-relaxed text-brand-text/70">
+              <p className="mb-8 flex-1 font-body text-[16px] leading-relaxed text-brand-text/70">
                 {action.description}
               </p>
-              <Button variant="primary" size="sm" href={action.href}>
+              <Button variant="primary" href={action.href} fullWidth>
                 {action.cta}
               </Button>
             </div>

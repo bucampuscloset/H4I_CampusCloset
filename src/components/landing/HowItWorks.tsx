@@ -37,16 +37,16 @@ export default function HowItWorks() {
           {steps.map((step) => (
             <div key={step.number} className="flex flex-col items-center text-center">
               <div
-                className={cn('mb-5 flex h-16 w-16 items-center justify-center rounded-full', step.bg)}
+                className={cn('mb-5 flex h-24 w-24 items-center justify-center rounded-full', step.bg)}
               >
-                <span className="font-heading text-[28px] font-bold text-white">
+                <span className="font-heading text-[38px] font-bold text-white">
                   {step.number}
                 </span>
               </div>
-              <h3 className="mb-2 font-heading text-[18px] font-bold text-brand-text">
+              <h3 className="mb-2 font-body text-[26px] font-extrabold text-brand-text">
                 {step.title}
               </h3>
-              <p className="font-body text-[14px] leading-relaxed text-brand-text/70">
+              <p className="font-body text-[19px] leading-relaxed text-brand-text/70">
                 {step.description}
               </p>
             </div>
