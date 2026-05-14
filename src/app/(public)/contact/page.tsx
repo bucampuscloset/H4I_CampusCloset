@@ -39,7 +39,7 @@ export default async function ContactPage() {
       {/* Contact info */}
       <section className="bg-white px-6 py-16 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-center font-display text-[28px] text-brand-text md:text-[36px]">
+          <h2 className="mb-8 text-center font-display text-[40px] text-brand-text md:text-[52px]">
             Other Ways to Reach Us
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">

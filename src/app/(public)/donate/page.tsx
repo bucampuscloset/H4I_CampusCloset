@@ -108,7 +108,7 @@ export default async function DonatePage() {
       {/* ── Section 2: How to Donate ────────────────────── */}
       <section className="bg-white py-16">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">How to Donate</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">How to Donate</h2>
           <p className="mt-3 font-body text-brand-text/70">
             Simple steps to make your clothing donation count!
           </p>
@@ -183,7 +183,7 @@ export default async function DonatePage() {
       {/* ── Section 4: Drop-Off Locations ───────────────── */}
       <section className="bg-white py-16">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">Drop-Off Locations</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Drop-Off Locations</h2>
           <p className="mt-3 font-body text-brand-text/70">
             Find convenient donation bins across BU campus
           </p>
@@ -207,7 +207,7 @@ export default async function DonatePage() {
       <section className="bg-brand-cream py-16">
         <div className={INNER}>
           <div className="text-center">
-            <h2 className="font-display text-3xl text-brand-text">Schedule a Pickup</h2>
+            <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Schedule a Pickup</h2>
             <p className="mt-3 font-body text-brand-text/70">
               Can&apos;t make it to a bin? Request a pickup and we&apos;ll coordinate a time.
             </p>
@@ -222,7 +222,7 @@ export default async function DonatePage() {
       {/* ── Section 6: Questions? ───────────────────────── */}
       <section className="bg-white py-16">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">Questions?</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Questions?</h2>
           <p className="mt-3 font-body text-brand-text/70">
             We&apos;re here to help with any questions about donating to BU Campus Closet.
           </p>

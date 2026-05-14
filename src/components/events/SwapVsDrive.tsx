@@ -14,7 +14,7 @@ export default async function SwapVsDrive() {
   return (
     <div className="w-full bg-white">
       <div className="mx-auto max-w-5xl p-8 font-body text-black">
-        <p className="mb-10 text-center font-display text-5xl font-bold">
+        <p className="mb-10 text-center font-display text-[40px] md:text-[52px]">
           Clothing Swap Vs. Drive
         </p>
 
@@ -65,7 +65,7 @@ export default async function SwapVsDrive() {
         </div>
 
         <div className="mx-auto mt-10 max-w-4xl rounded-[20px] border-[3px] border-[rgba(197,184,174,0.8)] bg-brand-cream p-6 shadow-sm">
-          <h2 className="mb-6 text-center text-2xl font-bold">General Guidelines for All Events</h2>
+          <h2 className="mb-6 text-center font-body text-[24px] font-extrabold md:text-[28px]">General Guidelines for All Events</h2>
           <div className="flex flex-col items-center justify-center gap-4 text-sm md:flex-row md:gap-16">
             {guidelines.map((line) => (
               <div key={line} className="flex items-center gap-2">
