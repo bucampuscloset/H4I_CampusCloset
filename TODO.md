@@ -43,79 +43,82 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 
 ## Mobile Responsiveness Issues
 
-- [ ] **Events badge fixed width overflows** — `EventsPageClient.tsx:65` uses `w-[420px]` which overflows on mobile. Change to `w-full max-w-[420px]`
-- [ ] **PhotoGallery bento grid not responsive** — `PhotoGallery.tsx:41` uses `grid-cols-3` with no mobile fallback. Should be `grid-cols-1 md:grid-cols-3` or a simpler 2-col layout on mobile
-- [ ] **EventCalendar fixed widths** — `EventCalendar.tsx:119` uses `w-[35%]` and `w-[60%]` which squeezes on mobile. Should stack vertically with `md:flex-row`
-- [ ] **MissionSection low mobile padding** — `MissionSection.tsx:31` uses `px-3` on mobile (very tight). Bump to `px-6`
-- [ ] **EventsPageClient fixed margins** — `EventsPageClient.tsx:60,74` uses `m-[50px]` which leaves only ~275px on 375px screen. Change to `m-6 md:m-[50px]`
-- [ ] **WhatIsCampusCloset icon too large on mobile** — `WhatIsCampusCloset.tsx:51` uses `h-[100px] w-[100px]`. Change to `h-16 w-16 md:h-[100px] md:w-[100px]`
-- [ ] **GetInvolved icon too large on mobile** — `GetInvolved.tsx:51` uses `h-[80px] w-[80px]`. Change to `h-14 w-14 md:h-[80px] md:w-[80px]`
-- [ ] **UpcomingEventsPreview calendar SVG too large** — `UpcomingEventsPreview.tsx:48` uses `h-[72px] w-[72px]`. Change to `h-12 w-12 md:h-[72px] md:w-[72px]`
-- [ ] **SwapVsDrive padding not responsive** — `SwapVsDrive.tsx:25` uses `p-8`. Change to `p-4 md:p-8`
+- [x] ~~Events badge fixed width overflows~~ — Changed to `w-full max-w-[420px]`
+- [x] ~~PhotoGallery bento grid not responsive~~ — 2-col on mobile, bento on desktop
+- [x] ~~EventCalendar fixed widths~~ — Stacks vertically on mobile
+- [x] ~~MissionSection low mobile padding~~ — Bumped to `px-6`
+- [x] ~~EventsPageClient fixed margins~~ — Responsive `mx-6 md:m-[50px]`
+- [x] ~~WhatIsCampusCloset icon too large~~ — `h-16 w-16 md:h-[100px] md:w-[100px]`
+- [x] ~~GetInvolved icon too large~~ — `h-14 w-14 md:h-[80px] md:w-[80px]`
+- [x] ~~UpcomingEventsPreview calendar SVG~~ — `h-12 w-12 md:h-[72px] md:w-[72px]`
+- [x] ~~SwapVsDrive padding~~ — `p-4 md:p-8`
 
 ---
 
 ## Cross-Page Consistency Issues
 
-### Page hero headings (should all be `text-[48px] md:text-[64px]`)
+### Page hero headings — all standardized to `text-[48px] md:text-[64px]`
 
-- [ ] Events: `text-[64px]` no mobile size — `EventsPageClient.tsx:61`
-- [ ] Donate: `text-4xl md:text-5xl` (smaller than others) — `donate/page.tsx:95`
-- [ ] FAQ: `text-[36px] md:text-[52px]` (smaller) — `faq/page.tsx:23`
-- [ ] Contact: `text-[36px] md:text-[52px]` (smaller) — `contact/page.tsx:24`
+- [x] ~~Events~~ — fixed
+- [x] ~~Donate~~ — fixed
+- [x] ~~FAQ~~ — fixed
+- [x] ~~Contact~~ — fixed
 
-### Section headings (should all be `text-[40px] md:text-[52px]`)
+### Section headings — all standardized to `text-[40px] md:text-[52px]`
 
-- [ ] About "Our Impact": uses `md:text-[54px]` — `about/page.tsx:46`
-- [ ] Donate sections: uses `text-3xl` (too small) — `donate/page.tsx:111,186,210,225`
-- [ ] Contact "Other Ways": uses `text-[28px] md:text-[36px]` (too small) — `contact/page.tsx:42`
-- [ ] SwapVsDrive heading: uses `text-5xl` — `SwapVsDrive.tsx:17`
-- [ ] PhotoGallery: uses `md:text-[48px]` — `PhotoGallery.tsx:36`
-- [ ] TeamGrid: uses `md:text-[54px]` — `TeamGrid.tsx:29`
+- [x] ~~About "Our Impact"~~ — fixed
+- [x] ~~Donate sections~~ — fixed
+- [x] ~~Contact "Other Ways"~~ — fixed
+- [x] ~~SwapVsDrive heading~~ — fixed
+- [x] ~~PhotoGallery~~ — fixed
+- [x] ~~TeamGrid~~ — fixed
 
-### Section padding (should all be `px-6 py-20 md:px-12`)
+### Section padding — all standardized to `py-20`
 
-- [ ] Donate sections use `py-16` instead of `py-20` — `donate/page.tsx`
-- [ ] FAQ hero uses unusual `pb-48` — `faq/page.tsx:21`
-- [ ] SwapVsDrive uses `p-8` (not responsive) — `SwapVsDrive.tsx:16`
+- [x] ~~Donate sections~~ — fixed
+- [x] ~~FAQ hero~~ — fixed
+- [x] ~~SwapVsDrive~~ — fixed
 
 ### Button inconsistency
 
-- [ ] Donate "Contact Us" button uses inline className instead of variant — `donate/page.tsx:233`
+- [x] ~~Donate "Contact Us"~~ — Added `tan` variant to Button, replaced inline styles
 
 ---
 
 ## Admin Editability Gaps
 
-~50+ user-facing strings are hardcoded and NOT editable from the admin portal. High priority items:
+### Landing page — DONE
 
-### Landing page (add SiteContent keys)
+- [x] ~~WhatIsCampusCloset: heading, subtitle, 3 pillar titles + descriptions~~
+- [x] ~~HowItWorks: heading, subtitle, 3 step titles + descriptions~~
+- [x] ~~WhyItMatters: heading, body paragraph~~
+- [x] ~~GetInvolved: heading, subtitle, 3 action card titles + descriptions~~
+- [x] ~~GalleryPreview: heading, subtitle~~
 
-- [ ] WhatIsCampusCloset: heading, subtitle, 3 pillar titles + descriptions
-- [ ] HowItWorks: heading, subtitle, 3 step titles + descriptions
-- [ ] WhyItMatters: heading, body paragraph
-- [ ] GetInvolved: heading, subtitle, 3 action card titles + descriptions
-- [ ] GalleryPreview: heading, subtitle
-
-### About page
+### About page — PARTIAL
 
 - [ ] MissionSection: "OUR MISSION" label, "REDUCING CONSUMPTION", "Expanding Access", 3 pillar titles + descriptions
 - [ ] AboutImpactStats: 6 stat labels, 3 equivalency descriptions
-- [ ] TeamGrid: heading, subtitle
+- [x] ~~TeamGrid: heading, subtitle~~
 
-### Donate page
+### Donate page — DONE
 
-- [ ] Hero heading + subtitle, How to Donate heading + subtitle, 3 step titles + descriptions
-- [ ] Drop-Off heading + subtitle, Schedule heading + subtitle, Questions heading + subtitle
+- [x] ~~Hero heading + subtitle, How to Donate heading + subtitle, 3 step titles + descriptions~~
+- [x] ~~Drop-Off heading + subtitle, Schedule heading + subtitle, Questions heading + subtitle~~
 
-### Events page
+### Events page — PARTIAL
 
-- [ ] Page heading + subtitle, badge suffix, upcoming heading + subtitle, no-events message
+- [x] ~~Page heading + subtitle, upcoming heading + subtitle, no-events message~~
 - [ ] SwapVsDrive: all comparison card content, guidelines heading
 
-### FAQ page
+### FAQ page — DONE
 
-- [ ] Hero heading + subtitle, "Still have questions?" heading + body, category labels
+- [x] ~~Hero heading + subtitle, "Still have questions?" heading + body~~
+- [ ] Category labels
+
+### Additional gaps (not yet addressed)
+
+- [ ] Admin user management UI — no way for admins to add/remove other admins
 
 ---
 
