@@ -7,6 +7,7 @@ import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
 import type { GalleryPhoto } from '@/types'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 type Form = { caption: string; eventId: string }
 
@@ -126,10 +127,11 @@ export default function AdminPhotosPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Photo Gallery</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Manage photos shown on the About page and landing gallery.
-      </p>
+      <AdminPageHeader
+        title="Photo Gallery"
+        subtitle="Manage photos shown on the About page and landing gallery."
+        accentColor="bg-brand-tan"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">Add Photo</h2>

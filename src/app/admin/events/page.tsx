@@ -9,6 +9,7 @@ import Modal from '@/components/ui/Modal'
 import Badge from '@/components/ui/Badge'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 interface Event {
   id: string
@@ -125,10 +126,11 @@ export default function AdminEventsPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Events</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Create and manage swap events, donation drives, and meetings.
-      </p>
+      <AdminPageHeader
+        title="Events"
+        subtitle="Create and manage swap events, donation drives, and meetings."
+        accentColor="bg-brand-olive"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">Add Event</h2>

@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 interface AdminUser {
   id: string
@@ -99,12 +100,11 @@ export default function AdminUsersPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">
-        Admin Users
-      </h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Manage who has access to the admin portal.
-      </p>
+      <AdminPageHeader
+        title="Admin Users"
+        subtitle="Manage who has access to the admin portal."
+        accentColor="bg-brand-terra"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">

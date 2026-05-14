@@ -1,6 +1,7 @@
 'use client'
 
 import Accordion from '@/components/ui/Accordion'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 const helpSections = [
   {
@@ -41,7 +42,7 @@ const helpSections = [
   {
     question: 'Donation Bins',
     answer:
-      'Go to Donation Bins in the sidebar to manage bin locations on campus. You can add new bins with a name, building, and description. Each bin can be toggled between active and inactive — inactive bins are hidden from the public map.',
+      'Go to Donation Bins in the sidebar to manage bin locations on campus. You can add new bins with a name, building, and description. Each bin can be toggled between active and inactive -- inactive bins are hidden from the public map.',
   },
   {
     question: 'Contact Inbox',
@@ -56,21 +57,20 @@ const helpSections = [
   {
     question: 'Troubleshooting',
     answer:
-      "Can't log in? Your Google email must be added to the admin list first — ask a current admin to add you. Changes not showing on the public site? Wait about 60 seconds and refresh the page. Photo won't upload? Make sure the file is under 5 MB and is a JPG, PNG, WebP, or GIF.",
+      "Can't log in? Your Google email must be added to the admin list first -- ask a current admin to add you. Changes not showing on the public site? Wait about 60 seconds and refresh the page. Photo won't upload? Make sure the file is under 5 MB and is a JPG, PNG, WebP, or GIF.",
   },
 ]
 
 export default function AdminHelpPage() {
   return (
     <div>
-      <h1 className="font-display text-[28px] text-brand-brown">Help</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        A quick guide to managing the Campus Closet website.
-      </p>
+      <AdminPageHeader
+        title="Help"
+        subtitle="A quick guide to managing the Campus Closet website."
+        accentColor="bg-brand-blue"
+      />
 
-      <div className="mt-8">
-        <Accordion items={helpSections} allowMultiple className="max-w-3xl" />
-      </div>
+      <Accordion items={helpSections} allowMultiple className="max-w-3xl" />
     </div>
   )
 }

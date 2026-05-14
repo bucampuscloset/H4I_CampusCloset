@@ -9,6 +9,7 @@ import Modal from '@/components/ui/Modal'
 import Textarea from '@/components/ui/Textarea'
 import type { TeamMember } from '@/types'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 type Form = { name: string; role: string; bio: string; photoUrl: string }
 
@@ -111,10 +112,11 @@ export default function AdminTeamPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Team Members</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Manage E-Board bios and photos shown on the About page.
-      </p>
+      <AdminPageHeader
+        title="Team Members"
+        subtitle="Manage E-Board bios and photos shown on the About page."
+        accentColor="bg-brand-olive"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">Add Member</h2>

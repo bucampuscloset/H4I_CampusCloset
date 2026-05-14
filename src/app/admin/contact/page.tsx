@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button'
 import Modal from '@/components/ui/Modal'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 interface ContactRequest {
   id: string
@@ -163,10 +164,11 @@ export default function AdminContactPage() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Contact Inbox</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        View and manage incoming contact, pickup, and dropoff requests.
-      </p>
+      <AdminPageHeader
+        title="Contact Inbox"
+        subtitle="View and manage incoming contact, pickup, and dropoff requests."
+        accentColor="bg-brand-lavender"
+      />
 
       {error && (
         <p className="mt-4 font-body text-[13px] text-brand-terra">{error}</p>

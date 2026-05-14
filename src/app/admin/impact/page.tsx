@@ -6,6 +6,7 @@ import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 interface ImpactRecord {
   id: string
@@ -125,10 +126,11 @@ export default function AdminImpactPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Impact Data</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Log environmental impact stats per event.
-      </p>
+      <AdminPageHeader
+        title="Impact Data"
+        subtitle="Log environmental impact stats per event."
+        accentColor="bg-brand-blue"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">Add Impact Entry</h2>

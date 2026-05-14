@@ -6,6 +6,7 @@ import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Textarea from '@/components/ui/Textarea'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 interface ContentEntry {
   id: string
@@ -255,18 +256,23 @@ export default function AdminContentPage() {
   if (loading) {
     return (
       <div className="mx-auto max-w-4xl">
-        <h1 className="font-display text-[28px] text-brand-brown">Site Content</h1>
-        <p className="mt-4 font-body text-[14px] text-brand-text/60">Loading...</p>
+        <AdminPageHeader
+          title="Site Content"
+          subtitle="Edit publicly-visible text across the site. Changes appear within 60 seconds."
+          accentColor="bg-brand-lavender"
+        />
+        <p className="font-body text-[14px] text-brand-text/60">Loading...</p>
       </div>
     )
   }
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">Site Content</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Edit publicly-visible text across the site. Changes appear within 60 seconds.
-      </p>
+      <AdminPageHeader
+        title="Site Content"
+        subtitle="Edit publicly-visible text across the site. Changes appear within 60 seconds."
+        accentColor="bg-brand-lavender"
+      />
 
       {error && <p className="mt-4 font-body text-[13px] text-brand-terra">{error}</p>}
       {success && <p className="mt-4 font-body text-[13px] text-brand-olive">{success}</p>}

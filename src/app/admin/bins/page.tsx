@@ -8,6 +8,7 @@ import Modal from '@/components/ui/Modal'
 import Input from '@/components/ui/Input'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 const BinMap = dynamic(() => import('./BinMap'), {
   ssr: false,
@@ -166,18 +167,15 @@ export default function AdminBinsPage() {
 
   return (
     <div>
-      {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-[28px] text-brand-text">Donation Bins</h1>
-          <p className="mt-1 font-body text-[14px] text-brand-text/60">
-            Manage campus drop-off locations
-          </p>
-        </div>
+      <AdminPageHeader
+        title="Donation Bins"
+        subtitle="Manage campus drop-off locations."
+        accentColor="bg-brand-tan"
+      >
         <Button variant="primary" size="sm" onClick={openAdd}>
           + Add Bin
         </Button>
-      </div>
+      </AdminPageHeader>
 
       {/* Table */}
       {loading ? (

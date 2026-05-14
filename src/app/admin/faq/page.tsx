@@ -9,6 +9,7 @@ import Textarea from '@/components/ui/Textarea'
 import { FAQ_CATEGORIES } from '@/types'
 import type { FaqItem } from '@/types'
 import { getResponseError } from '@/lib/safe-json'
+import AdminPageHeader from '@/components/admin/AdminPageHeader'
 
 type Form = { question: string; answer: string; category: string }
 
@@ -114,10 +115,11 @@ export default function AdminFaqPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="font-display text-[28px] text-brand-brown">FAQ</h1>
-      <p className="mt-2 font-body text-[14px] text-brand-text/60">
-        Add and edit questions shown on the FAQ page.
-      </p>
+      <AdminPageHeader
+        title="FAQ"
+        subtitle="Add and edit questions shown on the FAQ page."
+        accentColor="bg-brand-blue"
+      />
 
       <Card className="mt-8 p-6">
         <h2 className="mb-4 font-heading text-[16px] font-bold text-brand-text">Add Question</h2>
