@@ -9,10 +9,10 @@ export async function GET(_request: Request, { params }: RouteContext) {
   try {
     const { id } = await params
     const photo = await prisma.galleryPhoto.findUnique({ where: { id } })
-    if (!photo) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    if (!photo) return NextResponse.json({ error: 'Photo not found' }, { status: 404 })
     return NextResponse.json({ data: photo })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load photo' }, { status: 500 })
   }
 }
 
@@ -32,9 +32,9 @@ export async function PATCH(request: Request, { params }: RouteContext) {
     return NextResponse.json({ data: photo })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+      return NextResponse.json({ error: 'Photo not found' }, { status: 404 })
     }
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to update photo' }, { status: 500 })
   }
 }
 
@@ -48,8 +48,8 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
     return NextResponse.json({ ok: true })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+      return NextResponse.json({ error: 'Photo not found' }, { status: 404 })
     }
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to delete photo' }, { status: 500 })
   }
 }

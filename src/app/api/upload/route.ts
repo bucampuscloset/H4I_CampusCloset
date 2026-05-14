@@ -1,3 +1,6 @@
+export const runtime = 'nodejs'
+export const maxDuration = 30
+
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { requireAdmin } from '@/lib/admin-guard'
@@ -16,16 +19,16 @@ export async function POST(request: Request) {
     const file = formData.get('file') as File | null
 
     if (!file) {
-      return NextResponse.json({ error: 'No file provided' }, { status: 400 })
+      return NextResponse.json({ error: 'No file selected. Please choose an image to upload.' }, { status: 400 })
     }
 
     const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
     if (!allowed.includes(file.type)) {
-      return NextResponse.json({ error: 'File must be an image (jpg, png, webp, gif)' }, { status: 400 })
+      return NextResponse.json({ error: 'Only image files are allowed (JPG, PNG, WebP, or GIF).' }, { status: 400 })
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      return NextResponse.json({ error: 'File must be under 5 MB' }, { status: 400 })
+    if (file.size > 4 * 1024 * 1024) {
+      return NextResponse.json({ error: 'Image is too large. Please choose a file under 4 MB.' }, { status: 400 })
     }
 
     const MIME_TO_EXT: Record<string, string> = {
@@ -52,7 +55,7 @@ export async function POST(request: Request) {
     const { data } = supabaseAdmin.storage.from('photos').getPublicUrl(filename)
     return NextResponse.json({ url: data.publicUrl }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to upload image. Please try again.' }, { status: 500 })
   }
 }
 
@@ -67,11 +70,11 @@ export async function DELETE(request: Request) {
     if (guard.error) return guard.error
 
     const { url } = await request.json()
-    if (!url) return NextResponse.json({ error: 'No url provided' }, { status: 400 })
+    if (!url) return NextResponse.json({ error: 'No file URL provided for deletion.' }, { status: 400 })
 
     const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/`
     if (!url.startsWith(baseUrl)) {
-      return NextResponse.json({ error: 'Invalid url' }, { status: 400 })
+      return NextResponse.json({ error: 'Cannot delete this file — URL does not match storage.' }, { status: 400 })
     }
 
     const path = url.slice(baseUrl.length)
@@ -79,6 +82,6 @@ export async function DELETE(request: Request) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json({ ok: true })
   } catch {
-    return NextResponse.json({ error: 'Failed to delete file' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to delete image. Please try again.' }, { status: 500 })
   }
 }

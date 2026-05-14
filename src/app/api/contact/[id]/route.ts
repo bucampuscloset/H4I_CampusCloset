@@ -28,7 +28,7 @@ export async function PATCH(
 
     const validStatuses = ['new', 'responded', 'completed']
     if (body.status && !validStatuses.includes(body.status)) {
-      return NextResponse.json({ error: 'Invalid status value' }, { status: 400 })
+      return NextResponse.json({ error: 'Invalid status. Must be one of: new, responded, or completed.' }, { status: 400 })
     }
 
     const updateData: {
@@ -43,7 +43,7 @@ export async function PATCH(
     if (body.preferredLocation !== undefined) updateData.preferredLocation = body.preferredLocation
 
     if (Object.keys(updateData).length === 0) {
-      return NextResponse.json({ error: 'No valid fields to update' }, { status: 400 })
+      return NextResponse.json({ error: 'No changes provided. Please update at least one field.' }, { status: 400 })
     }
 
     const contactRequest = await prisma.contactRequest.update({
@@ -54,8 +54,8 @@ export async function PATCH(
     return NextResponse.json({ data: contactRequest })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return NextResponse.json({ error: 'Contact request not found' }, { status: 404 })
+      return NextResponse.json({ error: 'This contact request no longer exists.' }, { status: 404 })
     }
-    return NextResponse.json({ error: 'Failed to update contact request' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to update contact request. Please try again.' }, { status: 500 })
   }
 }

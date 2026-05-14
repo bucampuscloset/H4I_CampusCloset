@@ -9,7 +9,7 @@ export async function GET() {
     })
     return NextResponse.json({ data: members })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load team members. Please try again.' }, { status: 500 })
   }
 }
 
@@ -30,6 +30,6 @@ export async function POST(request: Request) {
     })
     return NextResponse.json({ data: member }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to create' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to add team member. Please try again.' }, { status: 500 })
   }
 }

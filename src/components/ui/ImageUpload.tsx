@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import Image from 'next/image'
+import { getResponseError } from '@/lib/safe-json'
 
 interface ImageUploadProps {
   currentUrl?: string
@@ -26,11 +27,11 @@ export default function ImageUpload({ currentUrl, onUpload, folder = 'team', cla
       form.append('file', file)
       form.append('folder', folder)
       const res = await fetch('/api/upload', { method: 'POST', body: form })
+      if (!res.ok) throw new Error(await getResponseError(res, 'Upload failed'))
       const json = await res.json()
-      if (!res.ok) throw new Error(json.error ?? 'Upload failed')
       onUpload(json.url)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Upload failed')
+      setError(err instanceof Error ? err.message : 'Image upload failed. The file may be too large (max 4 MB) or in an unsupported format.')
       setPreview(currentUrl ?? null)
     } finally {
       setUploading(false)

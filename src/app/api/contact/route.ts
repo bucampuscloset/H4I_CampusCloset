@@ -24,7 +24,7 @@ export async function GET() {
 
     return NextResponse.json({ data: requests })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch contact requests' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load contact requests. Please refresh the page.' }, { status: 500 })
   }
 }
 
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     const messageTrim = message?.trim()
 
     if (!nameTrim || !emailTrim || !messageTrim) {
-      return NextResponse.json({ error: 'name, email, and message are required' }, { status: 400 })
+      return NextResponse.json({ error: 'Please fill in your name, email, and message before submitting.' }, { status: 400 })
     }
 
     const validTypes = ['general', 'pickup', 'dropoff']
@@ -59,6 +59,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ data: contactRequest }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to submit contact request' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to send your message. Please try again later.' }, { status: 500 })
   }
 }

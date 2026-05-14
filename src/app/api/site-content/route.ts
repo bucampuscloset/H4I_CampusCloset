@@ -8,7 +8,7 @@ export async function GET() {
     const entries = await prisma.siteContent.findMany({ orderBy: { key: 'asc' } })
     return NextResponse.json({ data: entries })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch site content' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load site content. Please refresh the page.' }, { status: 500 })
   }
 }
 
@@ -22,10 +22,10 @@ export async function POST(request: Request) {
     const { key, value } = body
 
     if (!key || typeof key !== 'string') {
-      return NextResponse.json({ error: 'key is required' }, { status: 400 })
+      return NextResponse.json({ error: 'Content key is required.' }, { status: 400 })
     }
     if (value === undefined || value === null) {
-      return NextResponse.json({ error: 'value is required' }, { status: 400 })
+      return NextResponse.json({ error: 'Content value cannot be empty.' }, { status: 400 })
     }
 
     const entry = await prisma.siteContent.upsert({
@@ -36,6 +36,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ data: entry }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to save site content' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to save content changes. Please try again.' }, { status: 500 })
   }
 }

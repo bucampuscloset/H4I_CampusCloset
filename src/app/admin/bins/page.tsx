@@ -7,6 +7,7 @@ import Badge from '@/components/ui/Badge'
 import Modal from '@/components/ui/Modal'
 import Input from '@/components/ui/Input'
 import { cn } from '@/lib/cn'
+import { getResponseError } from '@/lib/safe-json'
 
 const BinMap = dynamic(() => import('./BinMap'), {
   ssr: false,
@@ -68,7 +69,7 @@ export default function AdminBinsPage() {
       const json = (await res.json()) as { data: DonationBin[] }
       setBins(json.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load bins')
+      setError(err instanceof Error ? err.message : 'Could not load donation bins. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -135,14 +136,13 @@ export default function AdminBinsPage() {
       })
 
       if (!res.ok) {
-        const json = (await res.json()) as { error?: string }
-        throw new Error(json.error ?? 'Failed to save bin')
+        throw new Error(await getResponseError(res, 'Could not save donation bin. Please check the form and try again.'))
       }
 
       closeModal()
       await fetchBins()
     } catch (err) {
-      setFormError(err instanceof Error ? err.message : 'Something went wrong')
+      setFormError(err instanceof Error ? err.message : 'Something went wrong while saving. Please try again.')
     } finally {
       setSaving(false)
     }
@@ -157,7 +157,7 @@ export default function AdminBinsPage() {
       setDeleteId(null)
       await fetchBins()
     } catch {
-      setError('Failed to delete bin')
+      setError('Could not delete donation bin. Please try again.')
       setDeleteId(null)
     }
   }

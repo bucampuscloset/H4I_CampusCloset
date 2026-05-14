@@ -9,7 +9,7 @@ export async function GET() {
     })
     return NextResponse.json({ data: items })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load FAQ items. Please try again.' }, { status: 500 })
   }
 }
 
@@ -35,6 +35,6 @@ export async function POST(request: Request) {
     })
     return NextResponse.json({ data: item }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to create' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to create FAQ item. Please try again.' }, { status: 500 })
   }
 }

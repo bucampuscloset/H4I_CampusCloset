@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     })
     return NextResponse.json({ data: photos })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load photos. Please try again.' }, { status: 500 })
   }
 }
 
@@ -34,6 +34,6 @@ export async function POST(request: Request) {
     })
     return NextResponse.json({ data: photo }, { status: 201 })
   } catch {
-    return NextResponse.json({ error: 'Failed to create' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to save photo. Please try again.' }, { status: 500 })
   }
 }

@@ -8,6 +8,7 @@ import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
 import Textarea from '@/components/ui/Textarea'
 import type { TeamMember } from '@/types'
+import { getResponseError } from '@/lib/safe-json'
 
 type Form = { name: string; role: string; bio: string; photoUrl: string }
 
@@ -25,11 +26,11 @@ export default function AdminTeamPage() {
     setLoading(true)
     try {
       const res = await fetch('/api/team')
-      if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
+      if (!res.ok) throw new Error(`Could not load team members (status ${res.status}). Please refresh.`)
       const json = await res.json()
       setMembers(json.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load team members')
+      setError(err instanceof Error ? err.message : 'Could not load team members. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -49,11 +50,11 @@ export default function AdminTeamPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, displayOrder: members.length }),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       setForm(EMPTY)
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create')
+      setError(err instanceof Error ? err.message : 'Could not add team member. Please try again.')
     } finally {
       setSubmitting(false)
     }
@@ -66,10 +67,10 @@ export default function AdminTeamPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patch),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? `Failed: ${res.status}`)
+      if (!res.ok) throw new Error(await getResponseError(res, `Failed: ${res.status}`))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update')
+      setError(err instanceof Error ? err.message : 'Could not update team member. Please try again.')
     }
   }
 
@@ -77,10 +78,10 @@ export default function AdminTeamPage() {
     if (!confirm('Delete this team member?')) return
     try {
       const res = await fetch(`/api/team/${id}`, { method: 'DELETE' })
-      if (!res.ok) throw new Error((await res.json()).error ?? `Failed: ${res.status}`)
+      if (!res.ok) throw new Error(await getResponseError(res, `Failed: ${res.status}`))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete')
+      setError(err instanceof Error ? err.message : 'Could not delete team member. Please try again.')
     }
   }
 
@@ -101,10 +102,10 @@ export default function AdminTeamPage() {
           body: JSON.stringify({ displayOrder: current.displayOrder }),
         }),
       ])
-      if (!r1.ok || !r2.ok) throw new Error('Failed to reorder')
+      if (!r1.ok || !r2.ok) throw new Error('Could not reorder team members. Please refresh and try again.')
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to reorder')
+      setError(err instanceof Error ? err.message : 'Could not reorder team members. Please refresh and try again.')
     }
   }
 

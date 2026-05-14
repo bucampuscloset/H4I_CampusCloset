@@ -9,10 +9,10 @@ export async function GET(_request: Request, { params }: RouteContext) {
   try {
     const { id } = await params
     const member = await prisma.teamMember.findUnique({ where: { id } })
-    if (!member) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+    if (!member) return NextResponse.json({ error: 'Team member not found' }, { status: 404 })
     return NextResponse.json({ data: member })
   } catch {
-    return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to load team member' }, { status: 500 })
   }
 }
 
@@ -32,9 +32,9 @@ export async function PATCH(request: Request, { params }: RouteContext) {
     return NextResponse.json({ data: member })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+      return NextResponse.json({ error: 'Team member not found' }, { status: 404 })
     }
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to update team member' }, { status: 500 })
   }
 }
 
@@ -48,8 +48,8 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
     return NextResponse.json({ ok: true })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 })
+      return NextResponse.json({ error: 'Team member not found' }, { status: 404 })
     }
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to delete team member' }, { status: 500 })
   }
 }

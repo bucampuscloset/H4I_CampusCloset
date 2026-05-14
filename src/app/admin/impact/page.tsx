@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
+import { getResponseError } from '@/lib/safe-json'
 
 interface ImpactRecord {
   id: string
@@ -58,7 +59,7 @@ export default function AdminImpactPage() {
       setRecords(impactJson.data ?? [])
       setEvents(eventsJson.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load')
+      setError(err instanceof Error ? err.message : 'Could not load impact stats. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -85,11 +86,11 @@ export default function AdminImpactPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       setForm(EMPTY)
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create')
+      setError(err instanceof Error ? err.message : 'Could not create impact record. Please check the form and try again.')
     } finally {
       setSubmitting(false)
     }
@@ -103,10 +104,10 @@ export default function AdminImpactPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patch),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update')
+      setError(err instanceof Error ? err.message : 'Could not update impact record. Please try again.')
     }
   }
 
@@ -115,10 +116,10 @@ export default function AdminImpactPage() {
     setError(null)
     try {
       const res = await fetch(`/api/impact/${id}`, { method: 'DELETE' })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete')
+      setError(err instanceof Error ? err.message : 'Could not delete impact record. Please try again.')
     }
   }
 

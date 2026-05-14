@@ -51,7 +51,7 @@ async function main() {
       data: {
         title: 'End-of-Year Mega Swap',
         type: 'swap',
-        date: new Date('2025-05-10T11:00:00Z'),
+        date: new Date('2026-09-15T11:00:00Z'),
         location: 'FitRec Gymnasium',
         description: 'Don\'t throw away your clothes when you move out — swap them!',
         itemLimit: 15,
@@ -60,11 +60,22 @@ async function main() {
     }),
     prisma.event.create({
       data: {
-        title: 'E-board Planning Meeting',
-        type: 'meeting',
-        date: new Date('2025-05-01T18:00:00Z'),
-        location: 'CAS 224',
-        description: 'Planning session for summer initiatives and next fall.',
+        title: 'Fall Kickoff Swap',
+        type: 'swap',
+        date: new Date('2026-09-20T14:00:00Z'),
+        location: 'Marsh Plaza Tent',
+        description: 'Welcome back swap to kick off the semester sustainably. Bring your summer finds!',
+        itemLimit: 10,
+        isPast: false,
+      },
+    }),
+    prisma.event.create({
+      data: {
+        title: 'Winter Drive Collection',
+        type: 'drive',
+        date: new Date('2026-10-05T10:00:00Z'),
+        location: 'Warren Towers Lobby',
+        description: 'Collecting winter coats and warm clothing for the cold months ahead.',
         isPast: false,
       },
     }),

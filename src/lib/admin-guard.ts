@@ -10,7 +10,7 @@ export async function requireAdmin() {
 
   if (!user?.email) {
     return {
-      error: NextResponse.json({ error: 'Not authenticated' }, { status: 401 }),
+      error: NextResponse.json({ error: 'You must be signed in to access this page.' }, { status: 401 }),
     }
   }
 
@@ -20,7 +20,7 @@ export async function requireAdmin() {
 
   if (!admin) {
     return {
-      error: NextResponse.json({ error: 'Not admin' }, { status: 403 }),
+      error: NextResponse.json({ error: 'You do not have admin access. Contact an administrator if you need access.' }, { status: 403 }),
     }
   }
 

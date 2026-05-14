@@ -5,6 +5,7 @@ import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import Modal from '@/components/ui/Modal'
 import { cn } from '@/lib/cn'
+import { getResponseError } from '@/lib/safe-json'
 
 interface ContactRequest {
   id: string
@@ -94,7 +95,7 @@ export default function AdminContactPage() {
       const json = await res.json()
       setRequests(json.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load contact requests')
+      setError(err instanceof Error ? err.message : 'Could not load contact requests. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -113,13 +114,13 @@ export default function AdminContactPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? `Failed: ${res.status}`)
+      if (!res.ok) throw new Error(await getResponseError(res, `Failed: ${res.status}`))
       const json = await res.json()
       const updated: ContactRequest = json.data
       setRequests((prev) => prev.map((r) => (r.id === id ? updated : r)))
       setViewing((prev) => (prev?.id === id ? updated : prev))
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update status')
+      setError(err instanceof Error ? err.message : 'Could not update request status. Please try again.')
     } finally {
       setUpdating(false)
     }

@@ -6,6 +6,7 @@ import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
 import type { GalleryPhoto } from '@/types'
+import { getResponseError } from '@/lib/safe-json'
 
 type Form = { caption: string; eventId: string }
 
@@ -38,7 +39,7 @@ export default function AdminPhotosPage() {
       setPhotos(photosJson.data ?? [])
       setEvents(eventsJson.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load')
+      setError(err instanceof Error ? err.message : 'Could not load photos. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -70,8 +71,8 @@ export default function AdminPhotosPage() {
       formData.append('file', file)
       formData.append('folder', 'gallery')
       const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData })
+      if (!uploadRes.ok) throw new Error(await getResponseError(uploadRes, 'Image upload failed. The file may be too large (max 4 MB) or in an unsupported format.'))
       const uploadJson = await uploadRes.json()
-      if (!uploadRes.ok) throw new Error(uploadJson.error ?? 'Upload failed')
 
       const res = await fetch('/api/photos', {
         method: 'POST',
@@ -89,14 +90,14 @@ export default function AdminPhotosPage() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: uploadJson.url }),
         }).catch(() => {})
-        throw new Error((await res.json()).error ?? 'Failed')
+        throw new Error(await getResponseError(res, 'Failed'))
       }
       setForm(EMPTY)
       setFile(null)
       setPreview(null)
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to add photo')
+      setError(err instanceof Error ? err.message : 'Could not save photo. Please try again.')
     } finally {
       setSubmitting(false)
     }
@@ -108,7 +109,7 @@ export default function AdminPhotosPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(patch),
     })
-    if (!res.ok) throw new Error((await res.json()).error ?? `Failed: ${res.status}`)
+    if (!res.ok) throw new Error(await getResponseError(res, `Failed: ${res.status}`))
     await load()
   }
 
@@ -116,10 +117,10 @@ export default function AdminPhotosPage() {
     if (!confirm('Delete this photo?')) return
     try {
       const res = await fetch(`/api/photos/${id}`, { method: 'DELETE' })
-      if (!res.ok) throw new Error((await res.json()).error ?? `Failed: ${res.status}`)
+      if (!res.ok) throw new Error(await getResponseError(res, `Failed: ${res.status}`))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete')
+      setError(err instanceof Error ? err.message : 'Could not delete photo. Please try again.')
     }
   }
 

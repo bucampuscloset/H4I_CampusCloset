@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
 import Textarea from '@/components/ui/Textarea'
+import { getResponseError } from '@/lib/safe-json'
 
 interface ContentEntry {
   id: string
@@ -99,7 +100,7 @@ export default function AdminContentPage() {
     setLoading(true)
     try {
       const res = await fetch('/api/site-content')
-      if (!res.ok) throw new Error('Failed to load')
+      if (!res.ok) throw new Error('Could not load site content. Please refresh the page.')
       const json = await res.json()
       setEntries(json.data ?? [])
       setValues((prev) => {
@@ -110,7 +111,7 @@ export default function AdminContentPage() {
         return next
       })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load')
+      setError(err instanceof Error ? err.message : 'Could not load site content. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -136,11 +137,11 @@ export default function AdminContentPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ key, value: values[key] }),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       setSuccess(`Saved "${key}"`)
       setTimeout(() => setSuccess(null), 3000)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save')
+      setError(err instanceof Error ? err.message : 'Could not save content changes. Please try again.')
     } finally {
       setSaving(null)
     }

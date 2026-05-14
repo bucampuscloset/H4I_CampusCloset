@@ -8,6 +8,7 @@ import Textarea from '@/components/ui/Textarea'
 import Modal from '@/components/ui/Modal'
 import Badge from '@/components/ui/Badge'
 import { cn } from '@/lib/cn'
+import { getResponseError } from '@/lib/safe-json'
 
 interface Event {
   id: string
@@ -55,11 +56,11 @@ export default function AdminEventsPage() {
     setLoading(true)
     try {
       const res = await fetch('/api/events')
-      if (!res.ok) throw new Error(`Failed to load: ${res.status}`)
+      if (!res.ok) throw new Error(`Could not load events (status ${res.status}). Please refresh.`)
       const json = await res.json()
       setEvents(json.data ?? [])
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load events')
+      setError(err instanceof Error ? err.message : 'Could not load events. Please refresh the page.')
     } finally {
       setLoading(false)
     }
@@ -85,11 +86,11 @@ export default function AdminEventsPage() {
           isPast: new Date(form.date) < new Date(),
         }),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       setForm(EMPTY)
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create event')
+      setError(err instanceof Error ? err.message : 'Could not create event. Please check the form and try again.')
     } finally {
       setSubmitting(false)
     }
@@ -103,10 +104,10 @@ export default function AdminEventsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patch),
       })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update')
+      setError(err instanceof Error ? err.message : 'Could not update event. Please try again.')
     }
   }
 
@@ -115,10 +116,10 @@ export default function AdminEventsPage() {
     setError(null)
     try {
       const res = await fetch(`/api/events/${id}`, { method: 'DELETE' })
-      if (!res.ok) throw new Error((await res.json()).error ?? 'Failed')
+      if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))
       await load()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete')
+      setError(err instanceof Error ? err.message : 'Could not delete event. Please try again.')
     }
   }
 

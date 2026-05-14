@@ -44,7 +44,7 @@ export default function FaqContactForm() {
           type: 'general',
         }),
       })
-      if (!res.ok) throw new Error('Failed to send')
+      if (!res.ok) throw new Error('Your message could not be sent. Please try again.')
       setStatus('success')
       setName('')
       setEmail('')
@@ -52,7 +52,7 @@ export default function FaqContactForm() {
       setMessage('')
     } catch (err) {
       setStatus('error')
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : 'Something went wrong while sending your message.')
     }
   }
 
@@ -108,7 +108,7 @@ export default function FaqContactForm() {
         )}
         {status === 'error' && (
           <p role="alert" className="text-center font-body text-[14px] text-brand-terra">
-            {error ?? 'Failed to send. Please try again.'}
+            {error ?? 'We couldn\'t send your message. Please check your connection and try again.'}
           </p>
         )}
       </form>

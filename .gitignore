@@ -35,6 +35,9 @@ yarn-error.log*
 CLAUDE.md
 .mcp.json
 
+# playwright
+.playwright-mcp/
+
 # audit docs (tracked separately)
 AUDIT.md
 NEXTSTEPS.md
