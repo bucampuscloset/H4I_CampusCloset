@@ -12,13 +12,13 @@ import { prisma } from '@/lib/prisma'
    └──────┴────────────┴──────┘  row 4
 */
 const BENTO_CLASSES = [
-  'col-start-1 row-start-1 row-span-2',         // 1: tall left
-  'col-start-2 row-start-1',                     // 2: top center
-  'col-start-3 row-start-1',                     // 3: top right
-  'col-start-2 col-span-2 row-start-2',          // 4: wide center
-  'col-start-1 row-start-3 row-span-2',          // 5: tall left
-  'col-start-2 row-start-3 row-span-2',          // 6: bottom center
-  'col-start-3 row-start-3 row-span-2',          // 7: bottom right
+  'md:col-start-1 md:row-start-1 md:row-span-2',         // 1: tall left
+  'md:col-start-2 md:row-start-1',                        // 2: top center
+  'md:col-start-3 md:row-start-1',                        // 3: top right
+  'md:col-start-2 md:col-span-2 md:row-start-2',          // 4: wide center
+  'md:col-start-1 md:row-start-3 md:row-span-2',          // 5: tall left
+  'md:col-start-2 md:row-start-3 md:row-span-2',          // 6: bottom center
+  'md:col-start-3 md:row-start-3 md:row-span-2',          // 7: bottom right
 ]
 
 export default async function PhotoGallery() {
@@ -38,11 +38,11 @@ export default async function PhotoGallery() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-3" style={{ gridTemplateRows: 'repeat(4, 160px)' }}>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:[grid-template-rows:repeat(4,160px)]">
           {photos.slice(0, 7).map((photo, i) => (
             <div
               key={photo.id}
-              className={`relative overflow-hidden rounded-[16px] bg-gray-100 ${BENTO_CLASSES[i] ?? ''}`}
+              className={`relative aspect-square md:aspect-auto overflow-hidden rounded-[16px] bg-gray-100 ${BENTO_CLASSES[i] ?? ''}`}
             >
               <Image
                 src={photo.url}
