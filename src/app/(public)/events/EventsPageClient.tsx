@@ -13,7 +13,6 @@ interface Event {
   location: string
   description: string
   itemLimit: number
-  isPast: boolean
 }
 
 type ApiEvent = Omit<Event, 'date'> & { date: string }

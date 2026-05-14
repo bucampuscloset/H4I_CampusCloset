@@ -10,7 +10,6 @@ interface Event {
   location: string;
   description: string;
   itemLimit: number;
-  isPast: boolean;
 }
 
 interface EventCardProps {

@@ -10,7 +10,6 @@ interface CreateEvent {
     location: string
     description: string
     itemLimit: number
-    isPast: boolean
 }
 
 // GET (list/filter), POST (create)
@@ -32,7 +31,7 @@ export async function POST(request: Request) {
 
     const body = (await request.json()) as CreateEvent
 
-    const { title, type, date, location, description, itemLimit, isPast } = body
+    const { title, type, date, location, description, itemLimit } = body
 
     if (typeof title !== 'string' || title.trim() === '') {
       return NextResponse.json({ error: 'title must be a non-empty string' }, { status: 400 })
@@ -58,10 +57,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'itemLimit must be a non-negative integer' }, { status: 400 })
     }
 
-    if (typeof isPast !== 'boolean') {
-      return NextResponse.json({ error: 'isPast must be a boolean' }, { status: 400 })
-    }
-
     const event = await prisma.event.create({
       data: {
         title,
@@ -70,7 +65,6 @@ export async function POST(request: Request) {
         location,
         description,
         itemLimit,
-        isPast
       },
     })
 

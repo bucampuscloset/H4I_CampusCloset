@@ -18,7 +18,6 @@ interface Event {
   location: string
   description: string | null
   itemLimit: number | null
-  isPast: boolean
   createdAt: string
 }
 
@@ -83,7 +82,6 @@ export default function AdminEventsPage() {
           location: form.location,
           description: form.description,
           itemLimit: form.itemLimit ? parseInt(form.itemLimit, 10) : 0,
-          isPast: new Date(form.date) < new Date(),
         }),
       })
       if (!res.ok) throw new Error(await getResponseError(res, 'Failed'))

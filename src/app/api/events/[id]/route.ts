@@ -9,7 +9,6 @@ interface UpdateEventBody {
   location?: string
   description?: string
   itemLimit?: number
-  isPast?: boolean
 }
 
 // GET (single), PUT (update), DELETE
@@ -44,7 +43,7 @@ export async function PUT(request: Request,
         const { id } = await params
         const body = (await request.json()) as UpdateEventBody
 
-        const { title, type, location, description, itemLimit, isPast } = body
+        const { title, type, location, description, itemLimit } = body
 
         const validTypes = ['swap', 'drive', 'meeting']
         if (title !== undefined && (typeof title !== 'string' || title.trim() === '')) {
@@ -59,13 +58,9 @@ export async function PUT(request: Request,
         if (itemLimit !== undefined && (!Number.isInteger(itemLimit) || itemLimit < 0)) {
           return NextResponse.json({ error: 'itemLimit must be a non-negative integer' }, { status: 400 })
         }
-        if (isPast !== undefined && typeof isPast !== 'boolean') {
-          return NextResponse.json({ error: 'isPast must be a boolean' }, { status: 400 })
-        }
-
         const event = await prisma.event.update({
             where: { id },
-            data: { title, type: type as EventType | undefined, location, description, itemLimit, isPast },
+            data: { title, type: type as EventType | undefined, location, description, itemLimit },
         })
 
         return NextResponse.json({ data: event })
