@@ -30,7 +30,7 @@ export default async function PhotoGallery() {
   if (photos.length === 0) return null
 
   return (
-    <section className="bg-brand-cream px-6 py-20 md:px-12">
+    <section id="gallery" className="bg-brand-cream px-6 py-20 md:px-12">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
           <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[48px]">

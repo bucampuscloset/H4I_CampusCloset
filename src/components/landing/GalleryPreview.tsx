@@ -41,7 +41,7 @@ export default async function GalleryPreview() {
         </div>
 
         <div className="text-center">
-          <Button variant="dark" href="/events">
+          <Button variant="dark" href="/events#gallery">
             View Full Gallery
           </Button>
         </div>
