@@ -323,6 +323,18 @@ function ContactDetailModal({
         </div>
 
         <div>
+          <Button
+            variant="primary"
+            href={`mailto:${encodeURIComponent(request.email)}?subject=${encodeURIComponent(`Re: ${request.type} — Campus Closet`)}&body=${encodeURIComponent(`Hi ${request.name},\n\nThank you for reaching out to Campus Closet.\n\n`)}`}
+          >
+            Reply
+          </Button>
+          <p className="mt-1 font-body text-[12px] text-brand-text/50">
+            Opens your email app to reply
+          </p>
+        </div>
+
+        <div>
           <p className="mb-2 font-body text-[12px] uppercase tracking-wider text-brand-text/50">
             Update Status
           </p>
