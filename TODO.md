@@ -47,18 +47,25 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] **PhotoGallery bento grid not responsive** — `PhotoGallery.tsx:41` uses `grid-cols-3` with no mobile fallback. Should be `grid-cols-1 md:grid-cols-3` or a simpler 2-col layout on mobile
 - [ ] **EventCalendar fixed widths** — `EventCalendar.tsx:119` uses `w-[35%]` and `w-[60%]` which squeezes on mobile. Should stack vertically with `md:flex-row`
 - [ ] **MissionSection low mobile padding** — `MissionSection.tsx:31` uses `px-3` on mobile (very tight). Bump to `px-6`
+- [ ] **EventsPageClient fixed margins** — `EventsPageClient.tsx:60,74` uses `m-[50px]` which leaves only ~275px on 375px screen. Change to `m-6 md:m-[50px]`
+- [ ] **WhatIsCampusCloset icon too large on mobile** — `WhatIsCampusCloset.tsx:51` uses `h-[100px] w-[100px]`. Change to `h-16 w-16 md:h-[100px] md:w-[100px]`
+- [ ] **GetInvolved icon too large on mobile** — `GetInvolved.tsx:51` uses `h-[80px] w-[80px]`. Change to `h-14 w-14 md:h-[80px] md:w-[80px]`
+- [ ] **UpcomingEventsPreview calendar SVG too large** — `UpcomingEventsPreview.tsx:48` uses `h-[72px] w-[72px]`. Change to `h-12 w-12 md:h-[72px] md:w-[72px]`
+- [ ] **SwapVsDrive padding not responsive** — `SwapVsDrive.tsx:25` uses `p-8`. Change to `p-4 md:p-8`
 
 ---
 
 ## Cross-Page Consistency Issues
 
 ### Page hero headings (should all be `text-[48px] md:text-[64px]`)
+
 - [ ] Events: `text-[64px]` no mobile size — `EventsPageClient.tsx:61`
 - [ ] Donate: `text-4xl md:text-5xl` (smaller than others) — `donate/page.tsx:95`
 - [ ] FAQ: `text-[36px] md:text-[52px]` (smaller) — `faq/page.tsx:23`
 - [ ] Contact: `text-[36px] md:text-[52px]` (smaller) — `contact/page.tsx:24`
 
 ### Section headings (should all be `text-[40px] md:text-[52px]`)
+
 - [ ] About "Our Impact": uses `md:text-[54px]` — `about/page.tsx:46`
 - [ ] Donate sections: uses `text-3xl` (too small) — `donate/page.tsx:111,186,210,225`
 - [ ] Contact "Other Ways": uses `text-[28px] md:text-[36px]` (too small) — `contact/page.tsx:42`
@@ -67,11 +74,13 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] TeamGrid: uses `md:text-[54px]` — `TeamGrid.tsx:29`
 
 ### Section padding (should all be `px-6 py-20 md:px-12`)
+
 - [ ] Donate sections use `py-16` instead of `py-20` — `donate/page.tsx`
 - [ ] FAQ hero uses unusual `pb-48` — `faq/page.tsx:21`
 - [ ] SwapVsDrive uses `p-8` (not responsive) — `SwapVsDrive.tsx:16`
 
 ### Button inconsistency
+
 - [ ] Donate "Contact Us" button uses inline className instead of variant — `donate/page.tsx:233`
 
 ---
@@ -81,6 +90,7 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 ~50+ user-facing strings are hardcoded and NOT editable from the admin portal. High priority items:
 
 ### Landing page (add SiteContent keys)
+
 - [ ] WhatIsCampusCloset: heading, subtitle, 3 pillar titles + descriptions
 - [ ] HowItWorks: heading, subtitle, 3 step titles + descriptions
 - [ ] WhyItMatters: heading, body paragraph
@@ -88,28 +98,29 @@ All pending tasks consolidated from NEXTSTEPS.md, FIX.md, and CLAUDE.md.
 - [ ] GalleryPreview: heading, subtitle
 
 ### About page
+
 - [ ] MissionSection: "OUR MISSION" label, "REDUCING CONSUMPTION", "Expanding Access", 3 pillar titles + descriptions
 - [ ] AboutImpactStats: 6 stat labels, 3 equivalency descriptions
 - [ ] TeamGrid: heading, subtitle
 
 ### Donate page
+
 - [ ] Hero heading + subtitle, How to Donate heading + subtitle, 3 step titles + descriptions
 - [ ] Drop-Off heading + subtitle, Schedule heading + subtitle, Questions heading + subtitle
 
 ### Events page
+
 - [ ] Page heading + subtitle, badge suffix, upcoming heading + subtitle, no-events message
 - [ ] SwapVsDrive: all comparison card content, guidelines heading
 
 ### FAQ page
+
 - [ ] Hero heading + subtitle, "Still have questions?" heading + body, category labels
 
 ---
 
 ## Post-Launch Improvements
 
-- [ ] Error tracking (Sentry)
-- [ ] Analytics (Vercel Analytics or Plausible)
-- [ ] Admin user management UI
 - [ ] Pagination on admin lists
 - [x] ~~Convert `Event.type` to Prisma enum~~ — Already done in schema
 - [x] ~~Replace `Event.isPast` with date-based queries~~ — Removed from schema and all code
