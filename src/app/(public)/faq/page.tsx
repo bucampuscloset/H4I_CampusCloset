@@ -10,8 +10,16 @@ export const metadata: Metadata = {
 }
 import FaqList from '@/components/faq/FaqList'
 import FaqContactForm from '@/components/faq/FaqContactForm'
+import { getContentMap } from '@/lib/site-content'
 
 export default async function FaqPage() {
+  const content = await getContentMap({
+    'faq.page_heading': 'Frequently Asked Questions',
+    'faq.page_subtitle': "Have questions about how Campus Closet works? We've got answers.",
+    'faq.still_heading': 'Still have questions?',
+    'faq.still_body': "Can't find the answer you're looking for? Reach out to us directly.",
+  })
+
   const items = await prisma.faqItem.findMany({
     orderBy: [{ displayOrder: 'asc' }, { createdAt: 'desc' }],
   }).catch(() => [])
@@ -21,11 +29,10 @@ export default async function FaqPage() {
       <section className="bg-brand-cream px-6 pb-48 pt-16 text-center md:px-12">
         <div className="mx-auto max-w-4xl">
           <h1 className="mb-4 font-display text-[36px] leading-[1.1] text-brand-text md:text-[52px]">
-            Frequently Asked Questions
+            {content['faq.page_heading']}
           </h1>
           <p className="mx-auto max-w-3xl font-body text-[16px] leading-[1.4] text-brand-text md:text-[20px] md:leading-[28px]">
-            Have questions about how Campus Closet works? Find everything you need to
-            know about swapping, donating, and our mission to reduce waste.
+            {content['faq.page_subtitle']}
           </p>
         </div>
       </section>
@@ -37,11 +44,10 @@ export default async function FaqPage() {
       <section className="bg-brand-olive px-6 py-20 md:px-12">
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <h2 className="mb-4 font-display text-[40px] text-white md:text-[54px]">
-            Still have questions?
+            {content['faq.still_heading']}
           </h2>
           <p className="font-body text-[16px] leading-[1.4] text-white/90 md:text-[24px] md:leading-[24px]">
-            Can&apos;t find the answer you&apos;re looking for? Fill out the form below
-            and our team will get back to you within 24 hours.
+            {content['faq.still_body']}
           </p>
         </div>
         <FaqContactForm />
