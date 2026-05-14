@@ -13,7 +13,7 @@ export default async function TeamGrid() {
     return (
       <section className="bg-white px-6 py-20 md:px-12">
         <div className="mx-auto max-w-6xl text-center">
-          <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[54px]">
+          <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
             Meet the E-Board
           </h2>
           <p className="font-body text-[16px] text-brand-text/60">Team coming soon.</p>
@@ -26,7 +26,7 @@ export default async function TeamGrid() {
     <section className="bg-white px-6 py-20 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[54px]">
+          <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
             Meet the E-Board
           </h2>
           <p className="font-body text-[20px] leading-[28px] text-brand-text">

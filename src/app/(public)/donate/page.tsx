@@ -90,9 +90,9 @@ export default async function DonatePage() {
   return (
     <>
       {/* ── Section 1: Hero ─────────────────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h1 className="font-display text-4xl md:text-5xl text-brand-text">
+          <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
             Donate Clothes
           </h1>
           <p className="mx-auto mt-4 max-w-xl font-body text-brand-text/70">
@@ -106,9 +106,9 @@ export default async function DonatePage() {
       <div className="h-9 w-full bg-brand-olive-light border-y-2 border-brand-brown" />
 
       {/* ── Section 2: How to Donate ────────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">How to Donate</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">How to Donate</h2>
           <p className="mt-3 font-body text-brand-text/70">
             Simple steps to make your clothing donation count!
           </p>
@@ -130,7 +130,7 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 3: What We Accept ───────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={INNER}>
           <div className="grid gap-6 md:grid-cols-2">
             {/* Accept */}
@@ -181,9 +181,9 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 4: Drop-Off Locations ───────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">Drop-Off Locations</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Drop-Off Locations</h2>
           <p className="mt-3 font-body text-brand-text/70">
             Find convenient donation bins across BU campus
           </p>
@@ -204,10 +204,10 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 5: Schedule a Pickup ────────────────── */}
-      <section className="bg-brand-cream py-16">
+      <section className="bg-brand-cream py-20">
         <div className={INNER}>
           <div className="text-center">
-            <h2 className="font-display text-3xl text-brand-text">Schedule a Pickup</h2>
+            <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Schedule a Pickup</h2>
             <p className="mt-3 font-body text-brand-text/70">
               Can&apos;t make it to a bin? Request a pickup and we&apos;ll coordinate a time.
             </p>
@@ -220,9 +220,9 @@ export default async function DonatePage() {
       </section>
 
       {/* ── Section 6: Questions? ───────────────────────── */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className={cn(INNER, 'text-center')}>
-          <h2 className="font-display text-3xl text-brand-text">Questions?</h2>
+          <h2 className="font-display text-[40px] text-brand-text md:text-[52px]">Questions?</h2>
           <p className="mt-3 font-body text-brand-text/70">
             We&apos;re here to help with any questions about donating to BU Campus Closet.
           </p>
@@ -230,7 +230,7 @@ export default async function DonatePage() {
             <Button href="/faq" variant="olive">
               View FAQ Page
             </Button>
-            <Button href="/contact" className="rounded-full bg-brand-tan text-white hover:opacity-90">
+            <Button href="/contact" variant="tan">
               Contact Us
             </Button>
           </div>

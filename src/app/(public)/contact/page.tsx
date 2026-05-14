@@ -21,7 +21,7 @@ export default async function ContactPage() {
       {/* Hero */}
       <section className="bg-brand-cream px-6 pb-16 pt-16 text-center md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h1 className="mb-4 font-display text-[36px] leading-[1.1] text-brand-text md:text-[52px]">
+          <h1 className="mb-4 font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
             Get in Touch
           </h1>
           <p className="mx-auto max-w-2xl font-body text-[16px] leading-[1.5] text-brand-text md:text-[20px] md:leading-[28px]">
@@ -39,7 +39,7 @@ export default async function ContactPage() {
       {/* Contact info */}
       <section className="bg-white px-6 py-16 md:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-center font-display text-[28px] text-brand-text md:text-[36px]">
+          <h2 className="mb-8 text-center font-display text-[40px] text-brand-text md:text-[52px]">
             Other Ways to Reach Us
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">

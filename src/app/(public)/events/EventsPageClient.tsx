@@ -58,7 +58,7 @@ export default function EventsPageClient() {
   return (
     <div>
       <div className="mx-6 my-10 md:m-[50px] text-center">
-        <h1 className="font-display text-[64px]">Events</h1>
+        <h1 className="font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">Events</h1>
         <p className="font-body text-[24px]">
           Find upcoming clothing swaps, donation drives, and more campus closet events!
         </p>

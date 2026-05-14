@@ -43,7 +43,7 @@ export default async function AboutPage() {
       <section className="bg-brand-cream px-6 py-20 md:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
-            <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[54px]">
+            <h2 className="mb-3 font-display text-[40px] text-brand-text md:text-[52px]">
               Our Impact
             </h2>
             <p className="font-body text-[20px] leading-[28px] text-brand-text">
