@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   description:
     'Learn about Campus Closet — our mission, impact, and the team behind BU\'s sustainability-focused clothing swap initiative.',
 }
-import Button from '@/components/ui/Button'
 import MissionSection from '@/components/about/MissionSection'
 import TeamGrid from '@/components/about/TeamGrid'
 import PhotoGallery from '@/components/about/PhotoGallery'
@@ -18,8 +17,6 @@ import { getContentMap } from '@/lib/site-content'
 export default async function AboutPage() {
   const content = await getContentMap({
     'about.tagline': 'Est. 2021 | Our mission is to cultivate community and environmental responsibility through free, sustainable, and circular clothing consumption.',
-    'about.join_heading': 'Want to join the team?',
-    'about.join_body': "We're always looking for passionate students to help organize swaps, run drives, and grow the Campus Closet community. Applications open each semester.",
   })
   return (
     <>
@@ -59,25 +56,6 @@ export default async function AboutPage() {
       </section>
 
       <TeamGrid />
-
-      <section className="bg-brand-olive px-6 py-20 text-center md:px-12">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-4 font-display text-[40px] text-white md:text-[48px]">
-            {content['about.join_heading']}
-          </h2>
-          <p className="mb-8 font-body text-[15px] leading-relaxed text-white/85">
-            {content['about.join_body']}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="secondary" href="/contact">
-              Get in Touch
-            </Button>
-            <Button variant="dark" href="/events">
-              See Our Events
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <PhotoGallery />
     </>

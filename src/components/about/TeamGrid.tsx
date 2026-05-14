@@ -53,7 +53,7 @@ export default async function TeamGrid() {
                     className="object-cover"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-                    <p className="font-heading text-[13px] font-bold text-white">
+                    <p className="font-body text-[13px] font-extrabold text-white">
                       {member.name}
                     </p>
                     <p className="font-body text-[11px] text-white/90">{member.role}</p>

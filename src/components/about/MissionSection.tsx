@@ -28,8 +28,8 @@ export default async function MissionSection() {
   })
 
   return (
-    <section className="bg-white px-6 py-20 md:px-12">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-16">
+    <section className="bg-white px-3 py-20 md:px-6">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16">
         <div className="relative aspect-[6/5] overflow-hidden rounded-[20px]">
           <Image
             src="/mission.png"
@@ -44,7 +44,7 @@ export default async function MissionSection() {
           <p className="mb-4 font-body text-[13px] font-extrabold tracking-[0.2em] text-brand-text md:text-[20px] md:tracking-[4px]">
             [ OUR MISSION ]
           </p>
-          <h2 className="mb-2 font-body text-[32px] font-extrabold leading-tight tracking-[-0.05em] text-brand-text md:text-[48px] md:tracking-[-2.4px]">
+          <h2 className="mb-2 font-body text-[32px] font-extrabold leading-tight tracking-[-0.05em] text-brand-text md:text-[43px] md:tracking-[-2.4px]">
             REDUCING CONSUMPTION
           </h2>
           <p className="mb-6 font-display text-[30px] italic text-brand-text md:text-[48px]">

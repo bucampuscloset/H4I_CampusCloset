@@ -45,27 +45,27 @@ export default function ImpactCharts({ impact }: { impact: Impact }) {
             {/* Waste Equivalency */}
             <div className="bg-brand-stat-terra p-8 rounded-2xl border-2 border-black shadow-sm flex flex-col items-center text-center">
               <div className="text-5xl mb-4" aria-hidden="true">🎒</div>
-              <h4 className="text-xl font-bold mb-3 text-brand-text">{wasteLbs.toLocaleString()} lbs of waste</h4>
+              <h4 className="text-xl font-body font-extrabold mb-3 text-brand-text">{wasteLbs.toLocaleString()} lbs of waste</h4>
               <p className="text-brand-text/70 leading-relaxed text-sm">
-                Equivalent to the weight of <span className="font-bold text-black">{suitcases.toLocaleString()}+ fully packed suitcases</span> kept out of landfills.
+                Equivalent to the weight of <span className="font-body font-extrabold text-black">{suitcases.toLocaleString()}+ fully packed suitcases</span> kept out of landfills.
               </p>
             </div>
 
             {/* Water Equivalency */}
             <div className="bg-brand-faq-active p-8 rounded-2xl border-2 border-black shadow-sm flex flex-col items-center text-center">
               <div className="text-5xl mb-4" aria-hidden="true">💧</div>
-              <h4 className="text-xl font-bold mb-3 text-brand-text">{waterLiters.toLocaleString()} liters of water</h4>
+              <h4 className="text-xl font-body font-extrabold mb-3 text-brand-text">{waterLiters.toLocaleString()} liters of water</h4>
               <p className="text-brand-text/70 leading-relaxed text-sm">
-                Enough drinking water to sustain <span className="font-bold text-black">{waterYears.toLocaleString()}+ people</span> for an entire year.
+                Enough drinking water to sustain <span className="font-body font-extrabold text-black">{waterYears.toLocaleString()}+ people</span> for an entire year.
               </p>
             </div>
 
             {/* Carbon Equivalency */}
             <div className="bg-brand-stat-green p-8 rounded-2xl border-2 border-black shadow-sm flex flex-col items-center text-center">
               <div className="text-5xl mb-4" aria-hidden="true">🌱</div>
-              <h4 className="text-xl font-bold mb-3 text-brand-text">{carbonLbs.toLocaleString()} lbs of CO₂</h4>
+              <h4 className="text-xl font-body font-extrabold mb-3 text-brand-text">{carbonLbs.toLocaleString()} lbs of CO₂</h4>
               <p className="text-brand-text/70 leading-relaxed text-sm">
-                Equivalent to the carbon absorbed by planting <span className="font-bold text-black">{trees.toLocaleString()}+ trees</span>.
+                Equivalent to the carbon absorbed by planting <span className="font-body font-extrabold text-black">{trees.toLocaleString()}+ trees</span>.
               </p>
             </div>
 
