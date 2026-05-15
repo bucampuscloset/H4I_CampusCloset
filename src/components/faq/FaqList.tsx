@@ -48,7 +48,7 @@ export default function FaqList({ items }: FaqListProps) {
 
   return (
     <div>
-      <div className="-mt-28 mb-16 md:-mt-36">
+      <div className="-mt-8 mb-16 md:-mt-12">
         <FaqSearch onSearch={setQuery} />
       </div>
 

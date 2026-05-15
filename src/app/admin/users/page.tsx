@@ -13,14 +13,6 @@ interface AdminUser {
   createdAt: string
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  })
-}
-
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUser[]>([])
   const [loading, setLoading] = useState(true)
@@ -54,7 +46,7 @@ export default function AdminUsersPage() {
     load()
   }, [])
 
-  async function handleAdd(e: React.FormEvent) {
+  async function handleAdd(e: React.SyntheticEvent) {
     e.preventDefault()
     setSubmitting(true)
     setError(null)
@@ -148,9 +140,6 @@ export default function AdminUsersPage() {
                 <div className="flex-1">
                   <p className="font-heading text-[15px] font-bold text-brand-text">
                     {u.email}
-                  </p>
-                  <p className="font-body text-[13px] text-brand-text/70">
-                    Added {formatDate(u.createdAt)}
                   </p>
                 </div>
                 <button

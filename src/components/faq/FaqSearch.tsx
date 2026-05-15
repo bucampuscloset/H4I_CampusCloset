@@ -10,7 +10,7 @@ interface FaqSearchProps {
 export default function FaqSearch({ onSearch }: FaqSearchProps) {
   const [value, setValue] = useState('')
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
     onSearch(value.trim())
   }
