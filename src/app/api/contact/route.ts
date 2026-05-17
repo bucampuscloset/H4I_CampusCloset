@@ -55,6 +55,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Please fill in your name, email, and message before submitting.' }, { status: 400 })
     }
 
+    // Basic email format validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrim)) {
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+    }
+
     const validTypes = ['general', 'pickup', 'dropoff']
     const resolvedType = type && validTypes.includes(type) ? type : 'general'
 

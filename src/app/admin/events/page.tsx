@@ -10,6 +10,9 @@ import Badge from '@/components/ui/Badge'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
 import AdminPageHeader from '@/components/admin/AdminPageHeader'
+import Pagination, { paginate } from '@/components/ui/Pagination'
+
+const PAGE_SIZE = 20
 
 interface Event {
   id: string
@@ -51,6 +54,7 @@ export default function AdminEventsPage() {
   const [editing, setEditing] = useState<Event | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [filter, setFilter] = useState<string>('All')
+  const [page, setPage] = useState(1)
 
   async function load() {
     setLoading(true)
@@ -122,7 +126,8 @@ export default function AdminEventsPage() {
     }
   }
 
-  const visible = filter === 'All' ? events : events.filter((e) => e.type === filter)
+  const filtered = filter === 'All' ? events : events.filter((e) => e.type === filter)
+  const { paged: visible, pageCount } = paginate(filtered, page, PAGE_SIZE)
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -170,7 +175,7 @@ export default function AdminEventsPage() {
         </h2>
         <select
           value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) => { setFilter(e.target.value); setPage(1) }}
           className="rounded-md border border-gray-300 px-3 py-1.5 font-body text-[13px]"
         >
           <option value="All">All types</option>
@@ -213,6 +218,8 @@ export default function AdminEventsPage() {
           ))}
         </ul>
       )}
+
+      <Pagination page={page} pageCount={pageCount} onPageChange={setPage} totalItems={filtered.length} pageSize={PAGE_SIZE} />
 
       {editing && (
         <EditEventModal

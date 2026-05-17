@@ -8,6 +8,9 @@ import Modal from '@/components/ui/Modal'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
 import AdminPageHeader from '@/components/admin/AdminPageHeader'
+import Pagination, { paginate } from '@/components/ui/Pagination'
+
+const PAGE_SIZE = 25
 
 interface ContactRequest {
   id: string
@@ -88,6 +91,7 @@ export default function AdminContactPage() {
   const [updating, setUpdating] = useState(false)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
+  const [page, setPage] = useState(1)
   const [sortKey, setSortKey] = useState<SortKey>('createdAt')
   const [sortDir, setSortDir] = useState<SortDir>('desc')
 
@@ -161,6 +165,8 @@ export default function AdminContactPage() {
     return sortDir === 'asc' ? cmp : -cmp
   })
 
+  const { paged: pagedSorted, pageCount } = paginate(sorted, page, PAGE_SIZE)
+
   function SortIcon({ col }: { col: SortKey }) {
     if (sortKey !== col) return <span className="ml-1 text-brand-text/30">↕</span>
     return <span className="ml-1 text-brand-olive">{sortDir === 'asc' ? '↑' : '↓'}</span>
@@ -195,14 +201,14 @@ export default function AdminContactPage() {
             label="Search"
             placeholder="Search by name, email, or message..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setPage(1) }}
           />
         </div>
         <div className="flex gap-1">
           {['all', 'new', 'responded', 'completed'].map((s) => (
             <button
               key={s}
-              onClick={() => setStatusFilter(s)}
+              onClick={() => { setStatusFilter(s); setPage(1) }}
               className={cn(
                 'rounded-md px-3 py-2 font-heading text-[12px] font-semibold transition-colors',
                 statusFilter === s
@@ -221,7 +227,7 @@ export default function AdminContactPage() {
           <div className="flex items-center justify-center py-16">
             <p className="font-body text-[14px] text-brand-text/60">Loading requests...</p>
           </div>
-        ) : sorted.length === 0 ? (
+        ) : filtered.length === 0 ? (
           <div className="flex items-center justify-center py-16">
             <p className="font-body text-[14px] text-brand-text/60">No contact requests yet.</p>
           </div>
@@ -241,7 +247,7 @@ export default function AdminContactPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {sorted.map((req) => (
+                {pagedSorted.map((req) => (
                   <tr
                     key={req.id}
                     className="transition-colors hover:bg-brand-cream/50"
@@ -273,6 +279,8 @@ export default function AdminContactPage() {
           </div>
         )}
       </div>
+
+      <Pagination page={page} pageCount={pageCount} onPageChange={setPage} totalItems={filtered.length} pageSize={PAGE_SIZE} />
 
       {viewing && (
         <ContactDetailModal

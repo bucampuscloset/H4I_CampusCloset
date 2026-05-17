@@ -128,7 +128,4 @@ This project does not include a paid error-tracking service. For basic monitorin
 
 ## Known Limitations
 
-- **Security headers** — No CSP, X-Frame-Options, etc. configured in `next.config.mjs`
-- **Email validation** — `POST /api/contact` only checks non-empty, no format validation
-- **OpenGraph image** — No `og:image` set for social previews
-- **Pagination** — Admin list pages fetch all records with no pagination
+None of the original critical/important items remain. All have been addressed.
