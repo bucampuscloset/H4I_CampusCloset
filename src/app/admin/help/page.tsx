@@ -27,7 +27,7 @@ const helpSections = [
   {
     question: 'Uploading Photos',
     answer:
-      'Go to Photos in the sidebar to upload images to the gallery. Supported formats are JPG, PNG, WebP, and GIF. The maximum file size is 5 MB per image. Uploaded photos appear on the public Events page gallery for visitors to browse.',
+      'Go to Photos in the sidebar to upload images to the gallery. Supported formats are JPG, PNG, WebP, and GIF. The maximum file size is 4 MB per image. Uploaded photos appear on the public Events page gallery for visitors to browse.',
   },
   {
     question: 'Editing Site Content',
@@ -57,7 +57,7 @@ const helpSections = [
   {
     question: 'Troubleshooting',
     answer:
-      "Can't log in? Your Google email must be added to the admin list first -- ask a current admin to add you. Changes not showing on the public site? Wait about 60 seconds and refresh the page. Photo won't upload? Make sure the file is under 5 MB and is a JPG, PNG, WebP, or GIF.",
+      "Can't log in? Your Google email must be added to the admin list first -- ask a current admin to add you. Changes not showing on the public site? Wait about 60 seconds and refresh the page. Photo won't upload? Make sure the file is under 4 MB and is a JPG, PNG, WebP, or GIF.",
   },
 ]
 

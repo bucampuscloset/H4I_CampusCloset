@@ -118,13 +118,17 @@ Most public-facing text is editable by admins via **Admin > Site Content**, orga
 
 Database-driven content managed through dedicated admin pages: Events, Impact Stats, Team Members, FAQ Items, Gallery Photos, Donation Bins, Contact Requests, and Admin Users.
 
+## Monitoring & Backups
+
+This project does not include a paid error-tracking service. For basic monitoring:
+
+- **Vercel Analytics** — Enable in Vercel dashboard (free tier) for traffic, errors, and performance
+- **Uptime monitoring** — Use a free service like [Better Uptime](https://betteruptime.com) or [UptimeRobot](https://uptimerobot.com) to ping the production URL and get alerts if the site goes down
+- **Database backups** — Supabase free tier includes daily automatic backups (retained for 7 days). For manual backups: Supabase Dashboard > Database > Backups. Export critical tables periodically via Supabase SQL Editor (`COPY ... TO STDOUT`)
+
 ## Known Limitations
 
-- **Rate limiting** — Public form endpoints (`POST /api/contact`) have no rate limiting
 - **Security headers** — No CSP, X-Frame-Options, etc. configured in `next.config.mjs`
-- **Cascade deletes** — Deleting an Event orphans related `GalleryPhoto` and `ImpactStats` records
-- **Storage cleanup** — Deleting photos/team members removes the DB record but not the file in Supabase Storage
 - **Email validation** — `POST /api/contact` only checks non-empty, no format validation
 - **OpenGraph image** — No `og:image` set for social previews
-- **Admin mobile** — Admin sidebar is fixed-width with no responsive breakpoints
 - **Pagination** — Admin list pages fetch all records with no pagination

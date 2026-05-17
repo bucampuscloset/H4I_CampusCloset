@@ -44,7 +44,16 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
 
   const { id } = await params
   try {
+    const member = await prisma.teamMember.findUnique({ where: { id } })
+    if (!member) return NextResponse.json({ error: 'Team member not found' }, { status: 404 })
+
     await prisma.teamMember.delete({ where: { id } })
+
+    // Clean up the photo in Supabase Storage
+    if (member.photoUrl) {
+      await deleteStorageFile(member.photoUrl)
+    }
+
     return NextResponse.json({ ok: true })
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
@@ -52,4 +61,17 @@ export async function DELETE(_request: Request, { params }: RouteContext) {
     }
     return NextResponse.json({ error: 'Failed to delete team member' }, { status: 500 })
   }
+}
+
+async function deleteStorageFile(url: string) {
+  const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/`
+  if (!url.startsWith(baseUrl)) return
+
+  const { createClient } = await import('@supabase/supabase-js')
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  )
+  const path = url.slice(baseUrl.length)
+  await supabaseAdmin.storage.from('photos').remove([path])
 }

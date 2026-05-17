@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
+import Input from '@/components/ui/Input'
 import Modal from '@/components/ui/Modal'
 import { cn } from '@/lib/cn'
 import { getResponseError } from '@/lib/safe-json'
@@ -85,6 +86,8 @@ export default function AdminContactPage() {
   const [error, setError] = useState<string | null>(null)
   const [viewing, setViewing] = useState<ContactRequest | null>(null)
   const [updating, setUpdating] = useState(false)
+  const [search, setSearch] = useState('')
+  const [statusFilter, setStatusFilter] = useState<string>('all')
   const [sortKey, setSortKey] = useState<SortKey>('createdAt')
   const [sortDir, setSortDir] = useState<SortDir>('desc')
 
@@ -136,7 +139,18 @@ export default function AdminContactPage() {
     }
   }
 
-  const sorted = [...requests].sort((a, b) => {
+  const filtered = requests.filter((req) => {
+    if (statusFilter !== 'all' && req.status !== statusFilter) return false
+    if (!search) return true
+    const q = search.toLowerCase()
+    return (
+      req.name.toLowerCase().includes(q) ||
+      req.email.toLowerCase().includes(q) ||
+      req.message.toLowerCase().includes(q)
+    )
+  })
+
+  const sorted = [...filtered].sort((a, b) => {
     let av = a[sortKey] ?? ''
     let bv = b[sortKey] ?? ''
     if (sortKey === 'createdAt') {
@@ -174,7 +188,35 @@ export default function AdminContactPage() {
         <p className="mt-4 font-body text-[13px] text-brand-terra">{error}</p>
       )}
 
-      <div className="mt-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+      {/* Search & filter */}
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
+        <div className="flex-1">
+          <Input
+            label="Search"
+            placeholder="Search by name, email, or message..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <div className="flex gap-1">
+          {['all', 'new', 'responded', 'completed'].map((s) => (
+            <button
+              key={s}
+              onClick={() => setStatusFilter(s)}
+              className={cn(
+                'rounded-md px-3 py-2 font-heading text-[12px] font-semibold transition-colors',
+                statusFilter === s
+                  ? 'bg-brand-olive text-white'
+                  : 'bg-white text-brand-text/60 hover:text-brand-text',
+              )}
+            >
+              {s === 'all' ? 'All' : STATUS_LABELS[s] ?? s}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
         {loading ? (
           <div className="flex items-center justify-center py-16">
             <p className="font-body text-[14px] text-brand-text/60">Loading requests...</p>

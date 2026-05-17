@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
@@ -124,18 +125,33 @@ const ADMIN_LINKS = [
 
 export default function AdminSidebar() {
   const pathname = usePathname()
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  // Close mobile nav on route change
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
 
   async function handleSignOut() {
     await supabase.auth.signOut()
     window.location.href = '/admin/login'
   }
 
-  return (
-    <aside className="flex w-64 shrink-0 flex-col border-r border-gray-200 bg-white">
-      <div className="border-b border-gray-200 px-6 py-5">
+  const sidebarContent = (
+    <>
+      <div className="border-b border-gray-200 px-6 py-5 flex items-center justify-between">
         <Link href="/admin">
           <span className="font-display text-[20px] text-brand-brown">CC Admin</span>
         </Link>
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="md:hidden rounded-md p-1 text-brand-text/60 hover:bg-gray-100"
+          aria-label="Close menu"
+        >
+          <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+        </button>
       </div>
 
       <nav aria-label="Admin navigation" className="flex-1 overflow-y-auto px-3 py-4">
@@ -195,6 +211,44 @@ export default function AdminSidebar() {
           Sign Out
         </button>
       </div>
-    </aside>
+    </>
+  )
+
+  return (
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        onClick={() => setMobileOpen(true)}
+        className="fixed left-4 top-4 z-40 rounded-lg border border-gray-200 bg-white p-2 shadow-sm md:hidden"
+        aria-label="Open menu"
+      >
+        <svg className="h-5 w-5 text-brand-text" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+        </svg>
+      </button>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/30 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      {/* Mobile sidebar */}
+      <aside
+        className={cn(
+          'fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-white shadow-lg transition-transform duration-200 md:hidden',
+          mobileOpen ? 'translate-x-0' : '-translate-x-full',
+        )}
+      >
+        {sidebarContent}
+      </aside>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden w-64 shrink-0 flex-col border-r border-gray-200 bg-white md:flex">
+        {sidebarContent}
+      </aside>
+    </>
   )
 }

@@ -171,7 +171,7 @@ export default function AdminPhotosPage() {
                     Click to upload a photo
                   </p>
                   <p className="font-body text-[12px] text-brand-text/30">
-                    JPG, PNG, WebP, GIF — max 5 MB
+                    JPG, PNG, WebP, GIF — max 4 MB
                   </p>
                 </div>
               </button>

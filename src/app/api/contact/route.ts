@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/admin-guard'
+import { rateLimit } from '@/lib/rate-limit'
 
 interface CreateContactBody {
   name: string
@@ -31,6 +33,17 @@ export async function GET() {
 // Public — submit a contact/pickup/dropoff request
 export async function POST(request: Request) {
   try {
+    // Rate limit: 5 submissions per minute per IP
+    const headersList = await headers()
+    const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+    const { success, retryAfter } = rateLimit(`contact:${ip}`, { limit: 5, windowMs: 60_000 })
+    if (!success) {
+      return NextResponse.json(
+        { error: `Too many submissions. Please try again in ${retryAfter} seconds.` },
+        { status: 429 },
+      )
+    }
+
     const body = (await request.json()) as CreateContactBody
     const { name, email, message, type, preferredLocation, preferredDate, preferredTime } = body
 
