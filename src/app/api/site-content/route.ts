@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/admin-guard'
 
@@ -33,6 +34,9 @@ export async function POST(request: Request) {
       update: { value: String(value) },
       create: { key, value: String(value) },
     })
+
+    // Bust ISR cache so changes appear immediately on all public pages
+    revalidatePath('/', 'layout')
 
     return NextResponse.json({ data: entry }, { status: 201 })
   } catch {
