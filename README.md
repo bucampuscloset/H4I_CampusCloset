@@ -34,9 +34,8 @@ cp .env.example .env
 npm run dev
 ```
 
-> **Note:** The database is already migrated and seeded on the shared Supabase instance.
+> **Note:** The database is already migrated on the shared Supabase instance.
 > Only run `npx prisma migrate dev` if you are making schema changes.
-> Only run `npm run db:seed` if you need to reset sample data.
 
 ## Project Structure
 
@@ -70,8 +69,7 @@ src/
 │   └── site-content.ts   # getContent(), getContentMap(), getContentJSON() — admin-editable text
 └── types/                # Shared TypeScript types
 prisma/
-├── schema.prisma         # Database schema (9 models incl. SiteContent)
-└── seed.ts               # Sample data seeder
+└── schema.prisma         # Database schema (9 models incl. SiteContent)
 prisma.config.ts          # Prisma CLI config (seed command, schema path)
 ```
 
@@ -83,8 +81,7 @@ prisma.config.ts          # Prisma CLI config (seed command, schema path)
 | `npm run build`      | Production build               |
 | `npm run lint`       | Run ESLint                     |
 | `npm run db:migrate` | Run Prisma migrations          |
-| `npm run db:seed`    | Seed database with sample data |
-| `npm run db:reset`   | Reset database and re-seed     |
+| `npm run db:reset`   | Reset database                 |
 
 ## Deployment
 
