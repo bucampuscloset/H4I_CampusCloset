@@ -4,7 +4,7 @@ A sustainability-focused clothing swap website for Boston University. Features a
 
 ## Tech Stack
 
-- **Framework:** Next.js 14+ (App Router)
+- **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript (strict mode)
 - **Styling:** Tailwind CSS with custom brand palette
 - **ORM:** Prisma with PostgreSQL
@@ -52,11 +52,11 @@ src/
 │   │   └── faq/
 │   ├── admin/            # Admin portal (own layout with sidebar, no Navbar/Footer)
 │   │   ├── login/
-│   │   └── [sections]/   # events, impact, bins, contact, team, faq, photos
+│   │   └── [sections]/   # events, impact, bins, contact, team, faq, photos, content, users, help
 │   ├── api/              # REST API endpoints
 │   └── auth/callback/    # OAuth callback route
 ├── components/
-│   ├── ui/               # Shared primitives (Button, Card, Input, Modal, Accordion, Badge, Textarea)
+│   ├── ui/               # Shared primitives (Button, Card, Input, Modal, Accordion, Badge, Textarea, ImageUpload)
 │   ├── layout/           # Navbar, Footer, AdminSidebar
 │   ├── landing/          # Landing page sections
 │   └── [feature]/        # Feature-specific components
@@ -66,11 +66,13 @@ src/
 │   ├── auth.ts           # signInWithGoogle(), signOut()
 │   ├── prisma.ts         # Prisma singleton
 │   ├── cn.ts             # Tailwind class merge utility
-│   └── constants.ts      # NAV_LINKS, IMPACT_FACTORS, SITE_METADATA
+│   ├── constants.ts      # NAV_LINKS, IMPACT_FACTORS, SITE_METADATA
+│   └── site-content.ts   # getContent(), getContentMap(), getContentJSON() — admin-editable text
 └── types/                # Shared TypeScript types
 prisma/
-├── schema.prisma         # Database schema (8 models)
+├── schema.prisma         # Database schema (9 models incl. SiteContent)
 └── seed.ts               # Sample data seeder
+prisma.config.ts          # Prisma CLI config (seed command, schema path)
 ```
 
 ## Available Scripts
@@ -83,17 +85,6 @@ prisma/
 | `npm run db:migrate` | Run Prisma migrations          |
 | `npm run db:seed`    | Seed database with sample data |
 | `npm run db:reset`   | Reset database and re-seed     |
-
-## Domain Ownership
-
-Work is divided by data domain. Each developer owns the database tables, API routes, admin forms, and public pages for their domain.
-
-| Domain                    | Owner        | Tables                                  | Routes                            |
-| ------------------------- | ------------ | --------------------------------------- | --------------------------------- |
-| Platform + Auth + Landing | Dev D (Lead) | admin_users                             | —                                 |
-| Events + Impact           | Dev A        | events, impact_stats                    | /api/events, /api/impact          |
-| Donations + Contact       | Dev B        | donation_bins, contact_requests         | /api/donations/bins, /api/contact |
-| Content + Media           | Dev C        | team_members, faq_items, gallery_photos | /api/team, /api/faq, /api/photos  |
 
 ## Deployment
 
@@ -119,3 +110,21 @@ All required vars are in `.env.example`. Real values go in `.env` (gitignored). 
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key                           |
 | `SUPABASE_SERVICE_ROLE_KEY`     | Supabase service role key (server only)          |
 | `NEXT_PUBLIC_SITE_URL`          | Production URL (for OAuth redirects)             |
+| `NEXT_PUBLIC_STADIA_MAPS_API_KEY` | Stadia Maps key for donation bin map (optional for localhost) |
+
+## Admin-Editable Content
+
+Most public-facing text is editable by admins via **Admin > Site Content**, organized into page-level tabs (Landing, About, Events, Donate, FAQ, Contact, Global). Content is stored in the `SiteContent` database table as key-value pairs and fetched server-side via `getContentMap()` in `src/lib/site-content.ts`. Each key has a hardcoded fallback default, so the site renders correctly even with an empty `SiteContent` table.
+
+Database-driven content managed through dedicated admin pages: Events, Impact Stats, Team Members, FAQ Items, Gallery Photos, Donation Bins, Contact Requests, and Admin Users.
+
+## Known Limitations
+
+- **Rate limiting** — Public form endpoints (`POST /api/contact`) have no rate limiting
+- **Security headers** — No CSP, X-Frame-Options, etc. configured in `next.config.mjs`
+- **Cascade deletes** — Deleting an Event orphans related `GalleryPhoto` and `ImpactStats` records
+- **Storage cleanup** — Deleting photos/team members removes the DB record but not the file in Supabase Storage
+- **Email validation** — `POST /api/contact` only checks non-empty, no format validation
+- **OpenGraph image** — No `og:image` set for social previews
+- **Admin mobile** — Admin sidebar is fixed-width with no responsive breakpoints
+- **Pagination** — Admin list pages fetch all records with no pagination

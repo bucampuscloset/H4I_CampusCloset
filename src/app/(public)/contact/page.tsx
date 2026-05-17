@@ -15,6 +15,9 @@ export default async function ContactPage() {
     'footer.email': 'campuscloset@bu.edu',
     'footer.instagram_url': 'https://www.instagram.com/bucampuscloset/',
     'footer.instagram_handle': '@bucampuscloset',
+    'contact.heading': 'Get in Touch',
+    'contact.subtitle': "Have a question, want to request a pickup, or just want to say hi? Fill out the form below and we'll get back to you within 24 hours.",
+    'contact.info_heading': 'Other Ways to Reach Us',
   })
   return (
     <>
@@ -22,11 +25,10 @@ export default async function ContactPage() {
       <section className="bg-brand-cream px-6 pb-16 pt-16 text-center md:px-12">
         <div className="mx-auto max-w-4xl">
           <h1 className="mb-4 font-display text-[48px] leading-[1.05] text-brand-text md:text-[64px]">
-            Get in Touch
+            {content['contact.heading']}
           </h1>
           <p className="mx-auto max-w-2xl font-body text-[16px] leading-[1.5] text-brand-text md:text-[20px] md:leading-[28px]">
-            Have a question, want to request a pickup, or just want to say hi?
-            Fill out the form below and we&apos;ll get back to you within 24 hours.
+            {content['contact.subtitle']}
           </p>
         </div>
       </section>
@@ -40,7 +42,7 @@ export default async function ContactPage() {
       <section className="bg-white px-6 py-16 md:px-12">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-center font-display text-[40px] text-brand-text md:text-[52px]">
-            Other Ways to Reach Us
+            {content['contact.info_heading']}
           </h2>
           <div className="grid gap-6 sm:grid-cols-2">
             {/* Email card */}

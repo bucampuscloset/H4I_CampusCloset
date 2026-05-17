@@ -30,17 +30,8 @@ yarn-error.log*
 # vercel
 .vercel
 
-# claude
-.claude/
-CLAUDE.md
-.mcp.json
-
 # playwright
 .playwright-mcp/
-
-# audit docs (tracked separately)
-AUDIT.md
-NEXTSTEPS.md
 
 # typescript
 *.tsbuildinfo
