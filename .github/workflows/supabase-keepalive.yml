@@ -1,0 +1,38 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Every 4 days at 08:00 UTC — prevents free-tier pause (7-day inactivity limit)
+    - cron: "0 8 */4 * *"
+  workflow_dispatch: # Manual trigger for testing
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL:-}" ] || [ -z "${SUPABASE_ANON_KEY:-}" ]; then
+            echo "::error::Missing required secrets SUPABASE_URL or SUPABASE_ANON_KEY"
+            exit 1
+          fi
+
+          HTTP_STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            "${SUPABASE_URL}/rest/v1/Event?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+
+          echo "HTTP status: ${HTTP_STATUS}"
+          cat /tmp/response.json
+
+          if [ "${HTTP_STATUS}" -ne 200 ]; then
+            echo "::error::Supabase ping failed with HTTP ${HTTP_STATUS}"
+            exit 1
+          fi
+
+          echo "Supabase keep-alive ping succeeded at $(date -u)"
