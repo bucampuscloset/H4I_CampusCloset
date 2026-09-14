@@ -23,10 +23,17 @@ jobs:
           fi
 
           # queries keepalive table — anon SELECT policy, hits PostgreSQL directly
-          HTTP_STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+          # curl failure (e.g. exit 6 = DNS gone => project paused) must not abort
+          # before we print a diagnosis, so don't let set -e swallow it.
+          HTTP_STATUS=$(curl -s --retry 3 --retry-all-errors -o /tmp/response.json -w "%{http_code}" \
             "${SUPABASE_URL}/rest/v1/keepalive?select=id" \
             -H "apikey: ${SUPABASE_ANON_KEY}" \
-            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}") || CURL_RC=$?
+
+          if [ -n "${CURL_RC:-}" ]; then
+            echo "::error::curl exited ${CURL_RC} (6 = could not resolve host: the Supabase project is likely PAUSED — restore it in the dashboard)"
+            exit 1
+          fi
 
           echo "HTTP status: ${HTTP_STATUS}"
           cat /tmp/response.json
